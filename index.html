@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alis Beauty — салон красоты</title>
+  <meta name="description" content="Alis Beauty — салон красоты. Маникюр, брови, ресницы, макияж. Онлайн-запись." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== Шапка ===== -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a href="#top" class="logo">Alis<span>Beauty</span></a>
+      <nav class="nav" id="nav">
+        <a href="#services">Услуги</a>
+        <a href="#about">О салоне</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#booking" class="nav__cta">Записаться</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="hero__eyebrow">Салон красоты</p>
+      <h1 class="hero__title">Ваша красота —<br>наше вдохновение</h1>
+      <p class="hero__text">Маникюр, брови, ресницы и макияж от мастеров, которые любят своё дело.</p>
+      <a href="#booking" class="btn btn--primary">Записаться онлайн</a>
+    </div>
+  </section>
+
+  <!-- ===== Услуги ===== -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2 class="section__title">Услуги и цены</h2>
+      <p class="section__subtitle">Цены указаны ориентировочно — замените их своими</p>
+
+      <div class="services">
+        <div class="service-card">
+          <h3>Маникюр</h3>
+          <ul>
+            <li><span>Классический маникюр</span><span>от 1500 ₽</span></li>
+            <li><span>Покрытие гель-лак</span><span>от 2000 ₽</span></li>
+            <li><span>Наращивание ногтей</span><span>от 3000 ₽</span></li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Брови и ресницы</h3>
+          <ul>
+            <li><span>Коррекция и окрашивание бровей</span><span>от 1200 ₽</span></li>
+            <li><span>Ламинирование бровей</span><span>от 2000 ₽</span></li>
+            <li><span>Наращивание ресниц</span><span>от 2500 ₽</span></li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Макияж</h3>
+          <ul>
+            <li><span>Дневной макияж</span><span>от 2000 ₽</span></li>
+            <li><span>Вечерний макияж</span><span>от 3000 ₽</span></li>
+            <li><span>Свадебный образ</span><span>от 5000 ₽</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== О салоне ===== -->
+  <section class="section section--alt" id="about">
+    <div class="container about">
+      <div class="about__img">
+        <img src="assets/img/about-placeholder.svg" alt="Интерьер салона" />
+      </div>
+      <div class="about__text">
+        <h2 class="section__title section__title--left">О салоне Alis Beauty</h2>
+        <p>Здесь будет текст о вашем салоне: сколько лет на рынке, атмосфера, ценности, чем вы отличаетесь. Замените этот абзац своим описанием.</p>
+        <p>Наши мастера регулярно проходят обучение и используют качественные материалы, чтобы каждый гость уходил довольным.</p>
+        <div class="about__stats">
+          <div><strong>5+</strong><span>лет опыта</span></div>
+          <div><strong>2000+</strong><span>клиентов</span></div>
+          <div><strong>4</strong><span>мастера</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3 class="masters__title">Наши мастера</h3>
+      <div class="masters">
+        <div class="master-card">
+          <div class="master-card__photo"></div>
+          <h4>Имя мастера</h4>
+          <p>Мастер маникюра</p>
+        </div>
+        <div class="master-card">
+          <div class="master-card__photo"></div>
+          <h4>Имя мастера</h4>
+          <p>Бровист · лешмейкер</p>
+        </div>
+        <div class="master-card">
+          <div class="master-card__photo"></div>
+          <h4>Имя мастера</h4>
+          <p>Визажист</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Галерея ===== -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <h2 class="section__title">Галерея работ</h2>
+      <p class="section__subtitle">Замените плейсхолдеры фотографиями ваших работ</p>
+      <div class="gallery">
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Запись + Контакты ===== -->
+  <section class="section section--alt" id="booking">
+    <div class="container booking">
+      <div class="booking__form-wrap">
+        <h2 class="section__title section__title--left">Онлайн-запись</h2>
+        <p>Оставьте заявку — мы перезвоним и подтвердим удобное время.</p>
+        <form class="form" id="bookingForm">
+          <input type="text" name="name" placeholder="Ваше имя" required />
+          <input type="tel" name="phone" placeholder="Телефон" required />
+          <select name="service" required>
+            <option value="" disabled selected>Выберите услугу</option>
+            <option>Маникюр</option>
+            <option>Брови и ресницы</option>
+            <option>Макияж</option>
+            <option>Другое</option>
+          </select>
+          <input type="date" name="date" />
+          <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
+          <button type="submit" class="btn btn--primary">Отправить заявку</button>
+          <p class="form__note" id="formNote"></p>
+        </form>
+      </div>
+
+      <div class="contacts" id="contacts">
+        <h3>Контакты</h3>
+        <ul class="contacts__list">
+          <li><span>Адрес</span> г. Город, ул. Улица, 1</li>
+          <li><span>Телефон</span> <a href="tel:+70000000000">+7 (000) 000-00-00</a></li>
+          <li><span>Часы работы</span> Пн–Вс, 10:00–21:00</li>
+          <li><span>Instagram</span> <a href="#">@alisbeauty</a></li>
+        </ul>
+        <div class="map-placeholder">Здесь будет карта (Яндекс / Google)</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Alis Beauty. Все права защищены.</span>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
