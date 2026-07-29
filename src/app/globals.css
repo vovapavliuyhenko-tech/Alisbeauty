@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Дизайн-токены (меняются в одном месте) ===== */
+/* ===== Дизайн-токены (меняются в одном месте) =====
+   Палитра как на референсе BlancBloom: кремовый фон + тёплый коричневый + коралл. */
 :root {
-  --bg: #0e0e0e;
-  --surface: #161616;
-  --text: #f4efe7;
-  --muted: #a9a39b;
-  --accent: #c6a664;
-  --accent-2: #d8c7a6;
-  --line: rgba(244, 239, 231, 0.12);
+  --bg: #f6f5f1;          /* кремовый фон */
+  --surface: #ffffff;      /* карточки */
+  --surface-alt: #eee9e1;  /* альтернативные секции */
+  --text: #4d392e;         /* тёплый тёмно-коричневый */
+  --muted: #9a897c;        /* приглушённый коричневый */
+  --accent: #d9795e;       /* коралл/терракота */
+  --accent-2: #ff8562;     /* светлый коралл */
+  --line: #d4cfca;         /* линии/границы */
+
+  /* Шрифт (один геометрический на весь сайт) */
+  --font-display: var(--font-main);
+  --font-body: var(--font-main);
 }
 
 * {
@@ -78,9 +84,11 @@ html.lenis body {
   outline-offset: 2px;
 }
 
-/* Заголовки — display-шрифт */
+/* Заголовки — тонкий геометрический шрифт, как на референсе */
 h1, h2, h3, h4 {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 500;
-  line-height: 1.05;
+  font-family: var(--font-display), 'Montserrat', sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
 }
+h1 { font-weight: 200; }

@@ -19,9 +19,9 @@ export default function Hero() {
       {/* Параллакс-фон */}
       <motion.div
         style={{ y }}
-        className="absolute inset-0 -z-10 bg-gradient-to-br from-surface via-bg to-black"
+        className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--surface-alt)] via-bg to-bg"
       />
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 [background:radial-gradient(60%_50%_at_50%_0%,rgba(198,166,100,0.18),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-60 [background:radial-gradient(60%_50%_at_50%_0%,rgba(217,121,94,0.12),transparent)]" />
 
       <motion.div style={{ opacity }} className="mx-auto w-[92%] max-w-content pt-28 text-center">
         <motion.p

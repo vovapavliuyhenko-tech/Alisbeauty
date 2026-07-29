@@ -28,7 +28,7 @@ export default function Concierge() {
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="aspect-[4/3] w-full rounded-2xl border border-line bg-gradient-to-tr from-accent/25 via-surface to-black" />
+          <div className="aspect-[4/3] w-full rounded-2xl border border-line bg-gradient-to-tr from-accent/25 via-[var(--surface-alt)] to-surface" />
         </Reveal>
       </div>
     </Section>

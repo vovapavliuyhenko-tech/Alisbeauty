@@ -9,7 +9,7 @@ export default function FullLook() {
 
   return (
     <section className="relative overflow-hidden py-28 sm:py-36">
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 [background:radial-gradient(50%_60%_at_50%_50%,rgba(198,166,100,0.2),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 [background:radial-gradient(50%_60%_at_50%_50%,rgba(217,121,94,0.15),transparent)]" />
       <div className="mx-auto w-[92%] max-w-3xl text-center">
         <Reveal>
           <p className="mb-4 text-xs uppercase tracking-[0.3em] text-accent">{t('eyebrow')}</p>
