@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "title": "A'LIS Beauty concierge",
+    "description": "A unique beauty service for special occasions"
+  },
+  "nav": {
+    "about": "About",
+    "founder": "Founder",
+    "concierge": "Concierge",
+    "uniqueness": "Why us",
+    "gallery": "Gallery",
+    "reviews": "Reviews",
+    "price": "Pricing",
+    "form": "Enquiry",
+    "contacts": "Contacts",
+    "book": "Book now"
+  },
+  "book": {
+    "title": "How would you like to reach us?",
+    "subtitle": "Message us — we reply fast",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "close": "Close"
+  },
+  "hero": {
+    "eyebrow": "A'LIS Beauty concierge",
+    "title": "A unique beauty service for special occasions",
+    "subtitle": "A premium beauty salon and on-location beauty concierge in Novorossiysk",
+    "salon": "Salon",
+    "salonDesc": "Beauty and aesthetics in our space",
+    "conciergeCard": "Concierge",
+    "conciergeDesc": "A team of stylists travelling to your event",
+    "cta": "Book now"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "A space of beauty in Novorossiysk",
+    "p1": "A'LIS is a premium beauty salon and a unique beauty concierge service. We create an atmosphere of care where every detail is considered for your comfort.",
+    "p2": "Our philosophy is to bring together people passionate about their craft and to deliver the highest level of service to every guest.",
+    "stats": {
+      "years": "years of experience",
+      "masters": "masters in the team",
+      "events": "looks created"
+    }
+  },
+  "founder": {
+    "eyebrow": "Founder",
+    "name": "Daiana Tarzian",
+    "role": "Founder of the ALIS aesthetics studios and A'LIS BEAUTY CONCIERGE",
+    "quote": "My idea is to bring together people who are passionate about their craft and creativity, to provide quality service and care for every detail, so that guests feel wonderful in a calm atmosphere."
+  },
+  "concierge": {
+    "eyebrow": "Concierge",
+    "title": "A beauty team travelling to your event",
+    "p1": "We create complete turnkey looks for weddings, photoshoots, events and special days — with a team of stylists travelling to any location.",
+    "p2": "A full set of professional equipment, a coordinated team and attention to every detail so that you and your guests look impeccable.",
+    "cta": "Send an enquiry"
+  },
+  "uniqueness": {
+    "eyebrow": "Why us",
+    "title": "What makes us unique",
+    "items": [
+      {
+        "num": "01",
+        "title": "Skill and experience",
+        "text": "Thanks to our expertise in the beauty industry, we easily meet our clients' needs."
+      },
+      {
+        "num": "02",
+        "title": "A large team",
+        "text": "The ability to prepare many guests at an event and to send a team of stylists to any location."
+      },
+      {
+        "num": "03",
+        "title": "Turnkey complete look",
+        "text": "A versatile team takes care of makeup, hairstyling, clothing and more on the day of the event."
+      },
+      {
+        "num": "04",
+        "title": "Commercial offers",
+        "text": "Comfortable service packages for events of any size and for business or creative collaborations."
+      },
+      {
+        "num": "05",
+        "title": "Quality equipment",
+        "text": "The team arrives with a full set of equipment: from professional lighting to a garment steamer."
+      }
+    ]
+  },
+  "fullLook": {
+    "eyebrow": "Turnkey",
+    "title": "A complete turnkey look",
+    "text": "We take care of everything: makeup, hairstyling, clothing and accessories. All you have to do is enjoy your event while we ensure an impeccable look."
+  },
+  "howto": {
+    "eyebrow": "How to order",
+    "title": "How to order our services",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Enquiry form",
+        "text": "Filling out the form helps us understand your request."
+      },
+      {
+        "num": "02",
+        "title": "Booking the date and discussing details",
+        "text": "A beauty manager will get in touch to discuss the event details, date, location, look, package, pricing and gifts."
+      },
+      {
+        "num": "03",
+        "title": "The team travels to you",
+        "text": "A professional, fully equipped team travels to the appointed date and location to create looks for you and your guests."
+      }
+    ]
+  },
+  "works": {
+    "eyebrow": "Portfolio",
+    "title": "Our work and looks",
+    "subtitle": "A few examples from our portfolio",
+    "cta": "View gallery"
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "Photo gallery",
+    "all": "All",
+    "categories": {
+      "wedding": "Wedding looks",
+      "events": "Events",
+      "backstage": "Backstage",
+      "clients": "Clients"
+    },
+    "instagramTitle": "Our Instagram",
+    "instagramCta": "View on Instagram",
+    "instagramFallback": "See our latest work on our Instagram profile",
+    "open": "Open"
+  },
+  "reviews": {
+    "eyebrow": "Reviews",
+    "title": "What our guests say",
+    "tag": "wedding day",
+    "items": [
+      {
+        "name": "Victoria",
+        "text": "The A'LIS team created my dream wedding look. Everything went calmly and on time, and the result exceeded my expectations."
+      },
+      {
+        "name": "Yulia",
+        "text": "True professionals! They arrived right on time and prepared all the guests' looks. Endless gratitude."
+      },
+      {
+        "name": "Maria",
+        "text": "Incredible care and attention to detail. I felt like a queen on my most important day."
+      }
+    ]
+  },
+  "price": {
+    "eyebrow": "Pricing",
+    "title": "Pricing",
+    "note": "* A different number of masters is discussed with the manager.",
+    "services": {
+      "title": "Services",
+      "rows": [
+        { "name": "Complete look", "price": "8 000 ₽" },
+        { "name": "Complete look (top stylists)", "price": "10 000 ₽" },
+        { "name": "Makeup", "price": "5 000 ₽" },
+        { "name": "Hairstyling", "price": "2 500 – 3 500 ₽" },
+        { "name": "Wedding look", "price": "10 000 ₽" },
+        { "name": "Wedding look (top stylists)", "price": "15 000 ₽" },
+        { "name": "Trial wedding look", "price": "8 500 ₽" },
+        { "name": "Wedding look + 1st look styling by a stylist", "price": "17 000 ₽" },
+        { "name": "Complete look + 1st event look styling by a stylist", "price": "15 000 ₽" }
+      ]
+    },
+    "travel": {
+      "title": "Travel for 2+ masters",
+      "rows": [
+        { "name": "Novorossiysk", "price": "8 000 ₽" },
+        { "name": "Gelendzhik / Anapa / Abrau-Dyurso and nearby", "price": "from 10 000 ₽" },
+        { "name": "Sochi / Adler", "price": "from 25 000 ₽" },
+        { "name": "Krasnodar / Rostov", "price": "from 25 000 ₽" },
+        { "name": "Moscow and Saint Petersburg", "price": "on request" }
+      ]
+    },
+    "support": {
+      "title": "Stylists' attendance at an event / wedding",
+      "rows": [
+        { "name": "Stylist or makeup artist", "price": "2 000 ₽/hour" },
+        { "name": "Stylist + makeup artist", "price": "4 000 ₽/hour" }
+      ]
+    }
+  },
+  "form": {
+    "eyebrow": "Enquiry",
+    "title": "Send an enquiry",
+    "subtitle": "Fill out the form and a beauty manager will contact you",
+    "tabRussia": "Within Russia",
+    "tabAbroad": "Abroad",
+    "fields": {
+      "name": "How should we address you?",
+      "phone": "Phone",
+      "phoneMessenger": "Phone + preferred messenger",
+      "messenger": "Messenger",
+      "date": "Event date",
+      "location": "Event location (city / venue)",
+      "people": "Number of people to get ready",
+      "country": "Country and city",
+      "dateFrom": "Trip dates: from",
+      "dateTo": "to",
+      "eventType": "Event type",
+      "eventTypeOptional": "(optional)",
+      "consent": "I agree to the privacy policy"
+    },
+    "eventTypes": {
+      "wedding": "Wedding",
+      "shoot": "Photoshoot",
+      "other": "Other"
+    },
+    "submit": "Send enquiry",
+    "sending": "Sending…",
+    "success": "Thank you! Your enquiry has been sent. A beauty manager will contact you.",
+    "error": "Could not send. Please message us on Telegram or WhatsApp.",
+    "validation": "Please fill in all required fields.",
+    "consentRequired": "Consent to the privacy policy is required."
+  },
+  "contacts": {
+    "eyebrow": "Contacts",
+    "title": "Get in touch",
+    "address": "Novorossiysk, Russia",
+    "socials": "Follow us",
+    "salonInsta": "Instagram (salon)",
+    "conciergeInsta": "Instagram (concierge)",
+    "requisites": "Legal details",
+    "ip": "Sole proprietor Daiana Ivanovna Tarzian",
+    "ogrnip": "OGRNIP 324237500038726",
+    "inn": "INN 237303387788",
+    "instagramNote": "Instagram is a social network banned in Russia (owned by Meta, recognized as extremist).",
+    "policy": "Privacy policy"
+  },
+  "footer": {
+    "tagline": "A unique beauty service for special occasions",
+    "menu": "Menu",
+    "copyright": "All rights reserved."
+  },
+  "policy": {
+    "title": "Privacy policy",
+    "back": "Back home",
+    "body": "The full privacy policy text will be placed here. Replace this section with the current version of the document."
+  }
+}
