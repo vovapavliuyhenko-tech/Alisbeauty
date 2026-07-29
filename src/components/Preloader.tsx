@@ -3,19 +3,39 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Экран загрузки при открытии сайта (в духе референса):
-// кремовый фон, serif-логотип, тонкая линия, плавное исчезновение.
+const FULL = "A'LIS BEAUTY";
+
+// Экран загрузки: текст логотипа печатается по буквам на линии (как ввод в строке),
+// затем плавно исчезает. Кремовый фон в стиле референса.
 export default function Preloader() {
   const [show, setShow] = useState(true);
+  const [typed, setTyped] = useState('');
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const delay = reduce ? 300 : 1500;
-    const timer = setTimeout(() => setShow(false), delay);
-    // блокируем скролл, пока показывается заставка
     document.body.style.overflow = 'hidden';
+
+    if (reduce) {
+      setTyped(FULL);
+      const t = setTimeout(() => setShow(false), 400);
+      return () => {
+        clearTimeout(t);
+        document.body.style.overflow = '';
+      };
+    }
+
+    let i = 0;
+    const typer = setInterval(() => {
+      i += 1;
+      setTyped(FULL.slice(0, i));
+      if (i >= FULL.length) clearInterval(typer);
+    }, 110);
+
+    const hide = setTimeout(() => setShow(false), FULL.length * 110 + 700);
+
     return () => {
-      clearTimeout(timer);
+      clearInterval(typer);
+      clearTimeout(hide);
       document.body.style.overflow = '';
     };
   }, []);
@@ -33,20 +53,12 @@ export default function Preloader() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="text-center">
-            <motion.p
-              className="font-display text-3xl tracking-[0.12em] sm:text-4xl"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              A&apos;LIS <span className="text-accent">BEAUTY</span>
-            </motion.p>
-            <motion.div
-              className="mx-auto mt-5 h-px bg-accent"
-              initial={{ width: 0 }}
-              animate={{ width: '120px' }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          <div className="flex items-end justify-center border-b border-text/40 pb-2">
+            <span className="font-display text-2xl tracking-[0.12em] sm:text-4xl">{typed}</span>
+            <motion.span
+              className="mb-1 ml-1 inline-block h-6 w-px bg-accent sm:h-8"
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ repeat: Infinity, duration: 0.9 }}
             />
           </div>
         </motion.div>

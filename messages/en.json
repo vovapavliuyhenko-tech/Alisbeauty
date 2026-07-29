@@ -13,7 +13,8 @@
     "price": "Pricing",
     "form": "Enquiry",
     "contacts": "Contacts",
-    "book": "Book now"
+    "book": "Book now",
+    "menu": "Menu"
   },
   "book": {
     "title": "How would you like to reach us?",

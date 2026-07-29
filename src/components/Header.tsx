@@ -3,21 +3,17 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Send, MessageCircle } from 'lucide-react';
 import LocaleSwitcher from './LocaleSwitcher';
 import { openBookModal } from './BookModal';
 import { navItems, site } from '@/config/site';
 import { trackGoal } from '@/lib/metrika';
 
-// Меню разбито на две группы вокруг центрального логотипа (как на референсе).
-const leftNav = navItems.slice(0, 4); // about, concierge, uniqueness, gallery
-const rightNav = navItems.slice(4); // reviews, price, form, contacts
-
 export default function Header() {
   const t = useTranslations('nav');
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>('');
-  const [drawer, setDrawer] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -38,15 +34,22 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenu(false);
+    if (menu) {
+      document.addEventListener('keydown', onKey);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [menu]);
+
   const book = () => {
     trackGoal('book_open');
     openBookModal();
   };
-
-  const linkCls = (id: string) =>
-    `text-[11px] uppercase tracking-[0.16em] transition ${
-      active === id ? 'text-accent' : 'text-text/75 hover:text-accent'
-    }`;
 
   return (
     <>
@@ -55,107 +58,116 @@ export default function Header() {
           scrolled ? 'bg-bg/90 backdrop-blur-md' : 'bg-transparent'
         }`}
       >
-        {/* Верхняя тонкая строка: телефон + язык + запись */}
+        {/* Верхняя тонкая строка */}
         <div className="hidden border-b border-line/60 lg:block">
           <div className="mx-auto flex h-9 w-[94%] max-w-content items-center justify-between text-[11px] tracking-wide text-muted">
             <a href={`tel:${site.whatsappNumber.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-text">
               <span>🇷🇺</span> {site.whatsappNumber}
             </a>
-            <div className="flex items-center gap-5">
-              <LocaleSwitcher />
-              <button onClick={book} className="uppercase tracking-[0.16em] text-accent hover:text-accent-2">
-                {t('book')}
-              </button>
-            </div>
+            <LocaleSwitcher />
           </div>
         </div>
 
-        {/* Основной бар с округлой рамкой */}
+        {/* Основной бар-пилюля */}
         <div className="mx-auto w-[94%] max-w-content py-3">
           <div
-            className={`relative flex items-center justify-between rounded-full border border-line px-6 lg:px-8 ${
+            className={`relative flex h-14 items-center justify-between rounded-full border border-line px-5 sm:px-7 ${
               scrolled ? 'bg-surface/70' : 'bg-surface/40'
-            } h-14 backdrop-blur-sm`}
+            } backdrop-blur-sm`}
           >
-            {/* Левое меню */}
-            <nav className="hidden flex-1 items-center gap-6 lg:flex">
-              {leftNav.map((id) => (
-                <a key={id} href={`#${id}`} className={linkCls(id)}>
-                  {t(id)}
-                </a>
-              ))}
-            </nav>
+            {/* Бургер + МЕНЮ (на всех размерах) */}
+            <button
+              onClick={() => setMenu(true)}
+              className="flex items-center gap-3 text-text transition hover:text-accent"
+              aria-label={t('menu')}
+            >
+              <Menu size={22} />
+              <span className="hidden text-[12px] uppercase tracking-[0.22em] sm:inline">{t('menu')}</span>
+            </button>
 
             {/* Центральный логотип */}
             <a
               href="#top"
-              className="font-display text-xl tracking-[0.08em] lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+              className="absolute left-1/2 -translate-x-1/2 font-display text-xl tracking-[0.08em]"
             >
               A&apos;LIS <span className="text-accent">BEAUTY</span>
             </a>
 
-            {/* Правое меню */}
-            <nav className="hidden flex-1 items-center justify-end gap-6 lg:flex">
-              {rightNav.map((id) => (
-                <a key={id} href={`#${id}`} className={linkCls(id)}>
-                  {t(id)}
-                </a>
-              ))}
-            </nav>
-
-            {/* Мобайл: бургер */}
-            <button className="ml-auto lg:hidden" onClick={() => setDrawer(true)} aria-label="menu">
-              <Menu size={24} />
+            {/* Справа: Записаться */}
+            <button
+              onClick={book}
+              className="text-[12px] uppercase tracking-[0.18em] text-accent transition hover:text-accent-2"
+            >
+              {t('book')}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Мобильный drawer */}
+      {/* Полноэкранное меню по центру */}
       <AnimatePresence>
-        {drawer && (
+        {menu && (
           <motion.div
-            className="fixed inset-0 z-[60] lg:hidden"
+            className="fixed inset-0 z-[80] bg-bg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="absolute inset-0 bg-black/40" onClick={() => setDrawer(false)} />
-            <motion.aside
-              className="absolute right-0 top-0 flex h-full w-[82%] max-w-xs flex-col border-l border-line bg-bg p-8"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <button className="mb-8 self-end text-muted" onClick={() => setDrawer(false)} aria-label="close">
-                <X size={26} />
-              </button>
-              <nav className="flex flex-col gap-5">
+            <div className="mx-auto flex h-full w-[92%] max-w-content flex-col">
+              {/* Верх: закрыть */}
+              <div className="flex h-20 items-center justify-end">
+                <button onClick={() => setMenu(false)} aria-label="close" className="text-text transition hover:text-accent">
+                  <X size={30} strokeWidth={1.5} />
+                </button>
+              </div>
+
+              {/* Центрированные пункты */}
+              <motion.nav
+                className="flex flex-1 flex-col items-center justify-center gap-6 sm:gap-7"
+                initial="hidden"
+                animate="show"
+                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } }}
+              >
                 {navItems.map((id) => (
-                  <a
+                  <motion.a
                     key={id}
                     href={`#${id}`}
-                    onClick={() => setDrawer(false)}
-                    className="text-sm uppercase tracking-[0.16em] text-text/85 transition hover:text-accent"
+                    onClick={() => setMenu(false)}
+                    variants={{
+                      hidden: { opacity: 0, y: 16 },
+                      show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+                    }}
+                    className={`text-sm uppercase tracking-[0.22em] transition sm:text-base ${
+                      active === id
+                        ? 'text-accent underline decoration-1 underline-offset-8'
+                        : 'text-text hover:text-accent'
+                    }`}
                   >
                     {t(id)}
-                  </a>
+                  </motion.a>
                 ))}
-              </nav>
-              <div className="mt-auto flex flex-col gap-5 pt-8">
+              </motion.nav>
+
+              {/* Низ: язык, запись, контакты */}
+              <div className="flex flex-col items-center gap-6 pb-12">
                 <LocaleSwitcher />
                 <button
                   onClick={() => {
-                    setDrawer(false);
+                    setMenu(false);
                     book();
                   }}
-                  className="rounded-full bg-accent px-6 py-3 text-sm uppercase tracking-[0.16em] text-bg"
+                  className="rounded-full bg-accent px-10 py-3 text-[12px] uppercase tracking-[0.2em] text-bg transition hover:bg-accent-2"
                 >
                   {t('book')}
                 </button>
+                <div className="flex items-center gap-6 text-muted">
+                  <a href={site.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="transition hover:text-accent"><Send size={20} /></a>
+                  <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="transition hover:text-accent"><MessageCircle size={20} /></a>
+                  <a href={`tel:${site.whatsappNumber.replace(/\s/g, '')}`} className="text-[12px] tracking-wide transition hover:text-accent">{site.whatsappNumber}</a>
+                </div>
               </div>
-            </motion.aside>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
