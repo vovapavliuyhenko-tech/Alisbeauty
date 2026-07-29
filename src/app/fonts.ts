@@ -1,15 +1,20 @@
 // Шрифты в одном месте — легко заменить на фирменный, когда пришлют.
-// Стиль как на референсе BlancBloom (FuturaPT) — берём Montserrat:
-// геометрический гротеск с поддержкой кириллицы и латиницы, тонкие начертания.
-import { Montserrat } from 'next/font/google';
+// Как на референсе BlancBloom: элегантный высококонтрастный serif для заголовков
+// (аналог их декоративного шрифта) + геометрический гротеск для интерфейса (аналог FuturaPT).
+import { Playfair_Display, Montserrat } from 'next/font/google';
 
-const montserrat = Montserrat({
+// Заголовки — элегантный serif с поддержкой кириллицы
+export const fontDisplay = Playfair_Display({
   subsets: ['latin', 'cyrillic'],
-  weight: ['200', '300', '400', '500', '600'],
-  variable: '--font-main',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-display',
   display: 'swap',
 });
 
-// И заголовки, и текст — один геометрический шрифт (как в референсе).
-export const fontDisplay = montserrat;
-export const fontBody = montserrat;
+// Интерфейс/текст — геометрический гротеск с кириллицей
+export const fontBody = Montserrat({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['200', '300', '400', '500', '600'],
+  variable: '--font-body',
+  display: 'swap',
+});

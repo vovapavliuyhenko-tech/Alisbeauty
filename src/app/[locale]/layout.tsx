@@ -9,6 +9,7 @@ import SmoothScroll from '@/components/SmoothScroll';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BookModal from '@/components/BookModal';
+import Preloader from '@/components/Preloader';
 import YandexMetrika from '@/components/YandexMetrika';
 import '../globals.css';
 
@@ -63,6 +64,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${fontDisplay.variable} ${fontBody.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <Preloader />
           <SmoothScroll>
             <Header />
             <main id="top">{children}</main>

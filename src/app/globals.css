@@ -10,13 +10,9 @@
   --surface-alt: #eee9e1;  /* альтернативные секции */
   --text: #4d392e;         /* тёплый тёмно-коричневый */
   --muted: #9a897c;        /* приглушённый коричневый */
-  --accent: #d9795e;       /* коралл/терракота */
-  --accent-2: #ff8562;     /* светлый коралл */
+  --accent: #6e1b2e;       /* бордово-винный */
+  --accent-2: #8f2740;     /* светлее вина */
   --line: #d4cfca;         /* линии/границы */
-
-  /* Шрифт (один геометрический на весь сайт) */
-  --font-display: var(--font-main);
-  --font-body: var(--font-main);
 }
 
 * {
@@ -84,11 +80,10 @@ html.lenis body {
   outline-offset: 2px;
 }
 
-/* Заголовки — тонкий геометрический шрифт, как на референсе */
+/* Заголовки — элегантный serif, как на референсе */
 h1, h2, h3, h4 {
-  font-family: var(--font-display), 'Montserrat', sans-serif;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: 0.01em;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0.005em;
 }
-h1 { font-weight: 200; }
