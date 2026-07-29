@@ -80,10 +80,10 @@ html.lenis body {
   outline-offset: 2px;
 }
 
-/* Заголовки — элегантный serif, как на референсе */
+/* Заголовки — элегантный serif Didone (Prata), одно начертание */
 h1, h2, h3, h4 {
   font-family: var(--font-display), Georgia, serif;
-  font-weight: 500;
-  line-height: 1.08;
+  font-weight: 400;
+  line-height: 1.12;
   letter-spacing: 0.005em;
 }

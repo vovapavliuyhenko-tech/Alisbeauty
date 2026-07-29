@@ -1,12 +1,12 @@
 // Шрифты в одном месте — легко заменить на фирменный, когда пришлют.
 // Как на референсе BlancBloom: элегантный высококонтрастный serif для заголовков
 // (аналог их декоративного шрифта) + геометрический гротеск для интерфейса (аналог FuturaPT).
-import { Playfair_Display, Montserrat } from 'next/font/google';
+import { Prata, Montserrat } from 'next/font/google';
 
-// Заголовки — элегантный serif с поддержкой кириллицы
-export const fontDisplay = Playfair_Display({
+// Заголовки — Prata (Didone), как декоративный serif на референсе. Одно начертание.
+export const fontDisplay = Prata({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
   variable: '--font-display',
   display: 'swap',
 });
