@@ -16,7 +16,7 @@ interface Item {
   subtitle: string;
 }
 
-// Тёмные фоновые градиенты-плейсхолдеры (замените реальными фото в /public при желании).
+// Тёмные фоновые градиенты-плейсхолдеры (замените реальными фото при желании).
 const bgStyles = [
   'linear-gradient(135deg,#3a322c,#0e0c0b 75%)',
   'linear-gradient(135deg,#2b2a30,#0d0b0f 75%)',
@@ -30,32 +30,9 @@ const cardImg = [
   'linear-gradient(135deg,#4f605c,#222528)',
 ];
 
-// Доля сегмента, отведённая на въезд/выезд карточки (остальное — «зависание» по центру).
-const T = 0.3;
-
-// Фон одного проекта: проявляется на своём сегменте + лёгкий параллакс.
-function ProjectBg({ progress, i, n }: { progress: MotionValue<number>; i: number; n: number }) {
-  const seg = 1 / n;
-  const start = i * seg;
-  const end = (i + 1) * seg;
-  const t = seg * T;
-  const first = i === 0;
-  const last = i === n - 1;
-  const opacity = useTransform(
-    progress,
-    [start, start + t, end - t, end],
-    [first ? 1 : 0, 1, 1, last ? 1 : 0]
-  );
-  const y = useTransform(progress, [start, end], ['-6%', '6%']); // параллакс фона
-  return (
-    <motion.div style={{ opacity }} className="absolute inset-0 overflow-hidden">
-      <motion.div style={{ y, background: bgStyles[i % bgStyles.length] }} className="absolute inset-[-8%]" />
-    </motion.div>
-  );
-}
-
-// Карточка проекта: въезжает снизу → зависает по центру → уезжает вверх (перетекание).
-function ProjectCard({
+// Контент карточки — плавно проявляется, когда позади центрируется его фон.
+// Рамка карточки при этом НЕ двигается: карточки «соединяются».
+function CardContent({
   progress,
   i,
   n,
@@ -68,29 +45,29 @@ function ProjectCard({
   item: Item;
   links: string;
 }) {
-  const seg = 1 / n;
-  const start = i * seg;
-  const end = (i + 1) * seg;
-  const t = seg * T;
-  const first = i === 0;
-  const last = i === n - 1;
+  const c = n > 1 ? i / (n - 1) : 0; // центр проекта i по прогрессу
+  const step = n > 1 ? 1 / (n - 1) : 1;
+  const e = step * 0.16; // короткое перекрёстное затухание у середины перехода
+  const midL = c - step / 2; // граница слева
+  const midR = c + step / 2; // граница справа
 
-  // Позиция по вертикали в процентах экрана: снизу (110%) → центр (0) → вверх (-110%)
-  const y = useTransform(
-    progress,
-    first ? [start, end - t, end] : last ? [start, start + t, end] : [start, start + t, end - t, end],
-    first ? ['0%', '0%', '-110%'] : last ? ['110%', '0%', '0%'] : ['110%', '0%', '0%', '-110%']
-  );
+  // Контент держится сплошным на своём отрезке, быстро крестится у границ.
+  const input =
+    i === 0
+      ? [midR - e, midR + e]
+      : i === n - 1
+        ? [midL - e, midL + e]
+        : [midL - e, midL + e, midR - e, midR + e];
+  const output = i === 0 ? [1, 0] : i === n - 1 ? [0, 1] : [0, 1, 1, 0];
+  const opacity = useTransform(progress, input, output);
 
   return (
-    <motion.div style={{ y }} className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
-      <div className="pointer-events-auto w-full max-w-[380px] bg-white p-8 text-center text-[#1a1512] shadow-2xl">
-        <p className="mx-auto max-w-[240px] text-[13px] leading-snug text-[#6b6560]">{item.category}</p>
-        <p className="mt-6 font-display text-4xl tracking-wide sm:text-5xl">{item.name}</p>
-        <p className="mt-1 text-sm text-[#8a827b]">{item.subtitle}</p>
-        <p className="mt-5 text-[13px] uppercase tracking-[0.15em] text-[#8a827b]">{links}</p>
-        <div className="mt-6 aspect-[4/3] w-full" style={{ background: cardImg[i % cardImg.length] }} />
-      </div>
+    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
+      <p className="mx-auto max-w-[240px] text-[13px] leading-snug text-[#6b6560]">{item.category}</p>
+      <p className="mt-6 font-display text-4xl tracking-wide sm:text-5xl">{item.name}</p>
+      <p className="mt-1 text-sm text-[#8a827b]">{item.subtitle}</p>
+      <p className="mt-5 text-[13px] uppercase tracking-[0.15em] text-[#8a827b]">{links}</p>
+      <div className="mt-6 aspect-[4/3] w-full max-w-[300px]" style={{ background: cardImg[i % cardImg.length] }} />
     </motion.div>
   );
 }
@@ -104,22 +81,31 @@ export default function PortfolioScroll() {
   const [index, setIndex] = useState(1);
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    setIndex(Math.min(n, Math.max(1, Math.floor(v * n) + 1)));
+    setIndex(Math.min(n, Math.max(1, Math.round(v * (n - 1)) + 1)));
   });
+
+  // Непрерывная прокрутка фона: колонка из n экранов едет вверх.
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0vh', `-${(n - 1) * 100}vh`]);
 
   return (
     <section id="works" ref={ref} style={{ height: `${n * 100}vh` }} className="relative">
       <div className="sticky top-0 h-screen overflow-hidden bg-[#0e0c0b] text-white">
-        {/* Фоновый коллаж */}
-        {items.map((_, i) => (
-          <ProjectBg key={i} progress={scrollYProgress} i={i} n={n} />
-        ))}
-        <div className="absolute inset-0 bg-black/30" />
+        {/* Непрерывный фоновый коллаж (двигается только он) */}
+        <motion.div style={{ y: bgY }} className="absolute inset-x-0 top-0">
+          {items.map((_, i) => (
+            <div key={i} className="h-screen w-full" style={{ background: bgStyles[i % bgStyles.length] }} />
+          ))}
+        </motion.div>
+        <div className="absolute inset-0 bg-black/25" />
 
-        {/* Карточки проектов */}
-        {items.map((item, i) => (
-          <ProjectCard key={i} progress={scrollYProgress} i={i} n={n} item={item} links={t('links')} />
-        ))}
+        {/* Неподвижная карточка по центру — меняется только её содержимое */}
+        <div className="absolute inset-0 flex items-center justify-center px-6">
+          <div className="relative h-[540px] w-full max-w-[380px] bg-white text-[#1a1512] shadow-2xl">
+            {items.map((item, i) => (
+              <CardContent key={i} progress={scrollYProgress} i={i} n={n} item={item} links={t('links')} />
+            ))}
+          </div>
+        </div>
 
         {/* Фиксированный оверлей: вступление, метка, счётчик */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto w-[92%] max-w-content pb-8">
