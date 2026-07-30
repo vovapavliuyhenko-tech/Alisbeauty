@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A'LIS BEAUTY — салон красоты и выездной beauty-консьерж</title>
+  <meta name="description" content="A'LIS — премиальный салон красоты и выездной beauty-консьерж в Новороссийске. Образы под ключ для свадеб и мероприятий." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Geologica:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============ 1. Верхняя тонкая полоса (announcement bar) ============ -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span>Онлайн-запись — ответим в течение 15 минут · Выезд команды по всему Югу России</span>
+    </div>
+  </div>
+
+  <!-- ============ 2. Хедер / навигация (sticky) ============ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <nav class="header__nav header__nav--left">
+        <a href="#lineups">Направления</a>
+        <a href="#system">Как работаем</a>
+        <a href="#mission">О бренде</a>
+        <a href="#services">Прайс</a>
+      </nav>
+
+      <a href="#top" class="header__logo">A&rsquo;LIS</a>
+
+      <div class="header__actions">
+        <a href="#services" class="header__search" aria-label="Поиск услуг">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <span>Поиск</span>
+        </a>
+        <a href="#form" class="btn btn--pill btn--accent header__cta">Записаться</a>
+      </div>
+
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Мобильное оверлей-меню -->
+  <div class="mobilemenu" id="mobilemenu">
+    <button class="mobilemenu__close" id="mobilemenuClose" aria-label="Закрыть">&times;</button>
+    <nav>
+      <a href="#lineups">Направления</a>
+      <a href="#system">Как работаем</a>
+      <a href="#mission">О бренде</a>
+      <a href="#services">Прайс</a>
+      <a href="#blog">Журнал</a>
+    </nav>
+    <a href="#form" class="btn btn--pill btn--accent">Записаться</a>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ 3. HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" data-ph="Фон: модель / бэкстейдж"></div>
+      <div class="hero__overlay"></div>
+      <div class="container hero__content">
+        <p class="eyebrow eyebrow--light reveal">A&rsquo;LIS beauty concierge · Новороссийск</p>
+        <h1 class="hero__title reveal">Образ под ключ,<br />а не набор услуг</h1>
+        <p class="hero__sub reveal">Понятные этапы, слаженная команда стилистов и внимание к каждой детали — стабильный результат для свадеб, съёмок и особенных событий.</p>
+        <a href="#form" class="btn btn--pill btn--light hero__cta reveal">Записаться</a>
+      </div>
+    </section>
+
+    <!-- ============ 4. Лента категорий (чипсы) ============ -->
+    <section class="chips-section" id="categories">
+      <div class="container">
+        <div class="chips" id="chips">
+          <a href="#services" class="chip reveal">Свадебный образ</a>
+          <a href="#services" class="chip reveal">Вечерний макияж</a>
+          <a href="#services" class="chip reveal">Причёски и укладки</a>
+          <a href="#services" class="chip reveal">Брови</a>
+          <a href="#services" class="chip reveal">Ресницы</a>
+          <a href="#services" class="chip reveal">Маникюр</a>
+          <a href="#services" class="chip reveal">Выезд команды</a>
+          <a href="#services" class="chip reveal">Съёмки</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. Миссия бренда ============ -->
+    <section class="mission section" id="mission">
+      <div class="container mission__grid">
+        <div class="mission__text">
+          <p class="eyebrow reveal">Миссия бренда</p>
+          <h2 class="reveal">Объединяем людей, влюблённых в своё дело</h2>
+          <p class="lead reveal">A&rsquo;LIS — это не просто мастера, а команда, которая создаёт атмосферу заботы. Мы продумываем каждую деталь, чтобы в свой важный день вы чувствовали себя спокойно и выглядели безупречно.</p>
+          <p class="lead reveal">Наша цель — качественный сервис премиального уровня и образы, которые остаются в сердце, а не только на фото.</p>
+        </div>
+        <div class="mission__media reveal">
+          <div class="ph ph--portrait" data-ph="Фото: основатель / студия"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. Направления (сетка карточек) ============ -->
+    <section class="lineups section section--alt" id="lineups">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="reveal">Наши направления</h2>
+          <p class="section-head__sub reveal">Каждое направление — отдельная команда мастеров и продуманный процесс.</p>
+        </div>
+        <div class="cards-grid" id="lineupsGrid">
+          <!-- карточки генерируются в JS из массива, но продублированы статически для SEO/без-JS -->
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Свадебный образ"></div><div class="card__body"><h3>Свадебный образ</h3><p>Пробный и финальный образ невесты под ключ.</p><span class="card__arrow">→</span></div></a>
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Вечерний макияж"></div><div class="card__body"><h3>Вечерний макияж</h3><p>Яркий или сдержанный образ для события.</p><span class="card__arrow">→</span></div></a>
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Причёски"></div><div class="card__body"><h3>Причёски и укладки</h3><p>От нежных локонов до сложных вечерних форм.</p><span class="card__arrow">→</span></div></a>
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Выездная команда"></div><div class="card__body"><h3>Выездная команда</h3><p>Сбор образов гостей в любой локации.</p><span class="card__arrow">→</span></div></a>
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Брови и ресницы"></div><div class="card__body"><h3>Брови и ресницы</h3><p>Оформление, ламинирование, наращивание.</p><span class="card__arrow">→</span></div></a>
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Маникюр"></div><div class="card__body"><h3>Маникюр</h3><p>Аккуратный уход и покрытие к образу.</p><span class="card__arrow">→</span></div></a>
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Съёмки"></div><div class="card__body"><h3>Съёмки и контент</h3><p>Образы для фото- и видеопроектов.</p><span class="card__arrow">→</span></div></a>
+          <a href="#form" class="card reveal"><div class="card__img ph" data-ph="Мероприятия"></div><div class="card__body"><h3>Мероприятия</h3><p>Пакеты для больших событий и бизнеса.</p><span class="card__arrow">→</span></div></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. Умная система — преимущества (4 пункта) ============ -->
+    <section class="system section" id="system">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <p class="eyebrow reveal">Как мы работаем</p>
+          <h2 class="reveal">Продуманная система, а не суета в день Х</h2>
+        </div>
+        <div class="features">
+          <div class="feature reveal">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6L12 20l-5 2.4 1-5.6-4-4 5.6-.8z"/></svg></div>
+            <h3>Стабильный результат</h3>
+            <p>Опытные мастера и проверенные материалы — образ держится весь день.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div>
+            <h3>Прозрачный прайс</h3>
+            <p>Заранее обсуждаем детали, пакет и стоимость — без сюрпризов.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.6-7-10a7 7 0 0114 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+            <h3>Выезд в любую локацию</h3>
+            <p>Приезжаем со всем оборудованием туда, где проходит событие.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h3>Полный образ под ключ</h3>
+            <p>Макияж, причёска, стайлинг — берём на себя всё до мелочей.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. Популярные услуги (слайдер) ============ -->
+    <section class="bestsellers section section--alt" id="bestsellers">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <h2 class="reveal">Популярные услуги</h2>
+          <div class="slider-nav">
+            <button class="slider-arrow" data-slider="best" data-dir="prev" aria-label="Назад">‹</button>
+            <button class="slider-arrow" data-slider="best" data-dir="next" aria-label="Вперёд">›</button>
+          </div>
+        </div>
+        <div class="slider" data-slider-track="best">
+          <div class="slider__viewport">
+            <div class="slider__track" id="bestTrack">
+              <div class="pcard"><div class="pcard__img ph" data-ph="Свадебный образ"></div><div class="pcard__body"><h3>Свадебный образ</h3><span class="pcard__tag">невеста · под ключ</span><div class="pcard__row"><span class="pcard__price">от 10 000 ₽</span><a href="#form" class="btn btn--sm">Записаться</a></div></div></div>
+              <div class="pcard"><div class="pcard__img ph" data-ph="Полный образ"></div><div class="pcard__body"><h3>Полный образ</h3><span class="pcard__tag">макияж + укладка</span><div class="pcard__row"><span class="pcard__price">от 8 000 ₽</span><a href="#form" class="btn btn--sm">Записаться</a></div></div></div>
+              <div class="pcard"><div class="pcard__img ph" data-ph="Вечерний макияж"></div><div class="pcard__body"><h3>Вечерний макияж</h3><span class="pcard__tag">событие</span><div class="pcard__row"><span class="pcard__price">от 5 000 ₽</span><a href="#form" class="btn btn--sm">Записаться</a></div></div></div>
+              <div class="pcard"><div class="pcard__img ph" data-ph="Выезд команды"></div><div class="pcard__body"><h3>Выезд команды</h3><span class="pcard__tag">2+ мастера</span><div class="pcard__row"><span class="pcard__price">от 8 000 ₽</span><a href="#form" class="btn btn--sm">Записаться</a></div></div></div>
+              <div class="pcard"><div class="pcard__img ph" data-ph="Сопровождение"></div><div class="pcard__body"><h3>Сопровождение стилиста</h3><span class="pcard__tag">на мероприятии</span><div class="pcard__row"><span class="pcard__price">2 000 ₽/час</span><a href="#form" class="btn btn--sm">Записаться</a></div></div></div>
+              <div class="pcard"><div class="pcard__img ph" data-ph="Пробный образ"></div><div class="pcard__body"><h3>Пробный свадебный</h3><span class="pcard__tag">репетиция образа</span><div class="pcard__row"><span class="pcard__price">8 500 ₽</span><a href="#form" class="btn btn--sm">Записаться</a></div></div></div>
+            </div>
+          </div>
+          <div class="slider__dots" data-slider-dots="best"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. Вы и A'LIS — галерея / UGC-слайдер ============ -->
+    <section class="ugc section" id="ugc">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <h2 class="reveal">Вы и A&rsquo;LIS</h2>
+          <div class="slider-nav">
+            <button class="slider-arrow" data-slider="ugc" data-dir="prev" aria-label="Назад">‹</button>
+            <button class="slider-arrow" data-slider="ugc" data-dir="next" aria-label="Вперёд">›</button>
+          </div>
+        </div>
+        <div class="slider" data-slider-track="ugc">
+          <div class="slider__viewport">
+            <div class="slider__track" id="ugcTrack">
+              <div class="ugc__item ph" data-ph="Фото 1"></div>
+              <div class="ugc__item ph" data-ph="Фото 2"></div>
+              <div class="ugc__item ph" data-ph="Фото 3"></div>
+              <div class="ugc__item ph" data-ph="Фото 4"></div>
+              <div class="ugc__item ph" data-ph="Фото 5"></div>
+              <div class="ugc__item ph" data-ph="Фото 6"></div>
+              <div class="ugc__item ph" data-ph="Фото 7"></div>
+              <div class="ugc__item ph" data-ph="Фото 8"></div>
+              <div class="ugc__item ph" data-ph="Фото 9"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. Журнал (блог) ============ -->
+    <section class="blog section section--alt" id="blog">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <p class="eyebrow reveal">Журнал A&rsquo;LIS</p>
+          <h2 class="reveal">Делимся секретами красоты и рассказываем о бренде</h2>
+        </div>
+        <div class="blog-grid">
+          <a href="#" class="post reveal"><div class="post__img ph" data-ph="Статья 1"></div><div class="post__body"><h3>Как подготовиться к свадебному образу</h3><p class="post__excerpt">Что взять на пробный макияж и как выбрать образ, который подойдёт именно вам…</p><span class="post__date">12 июня 2026</span></div></a>
+          <a href="#" class="post reveal"><div class="post__img ph" data-ph="Статья 2"></div><div class="post__body"><h3>Стойкий макияж в жару</h3><p class="post__excerpt">Секреты визажистов, чтобы образ держался весь день на южном солнце…</p><span class="post__date">3 июня 2026</span></div></a>
+          <a href="#" class="post reveal"><div class="post__img ph" data-ph="Статья 3"></div><div class="post__body"><h3>Выездная команда: как это устроено</h3><p class="post__excerpt">Рассказываем, как проходит сбор образов гостей на мероприятии…</p><span class="post__date">28 мая 2026</span></div></a>
+          <a href="#" class="post reveal"><div class="post__img ph" data-ph="Статья 4"></div><div class="post__body"><h3>Как подобрать причёску под платье</h3><p class="post__excerpt">Разбираем, какие укладки сочетаются с разными фасонами и длиной…</p><span class="post__date">19 мая 2026</span></div></a>
+        </div>
+        <div class="blog__more reveal"><a href="#" class="btn btn--pill btn--outline">Читать все статьи</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ 11. Футер ============ -->
+  <footer class="footer" id="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#top" class="footer__logo">A&rsquo;LIS</a>
+        <p>Салон красоты и выездной beauty-консьерж. Новороссийск.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Меню</h4>
+        <a href="#lineups">Направления</a>
+        <a href="#services">Прайс</a>
+        <a href="#system">Как работаем</a>
+        <a href="#blog">Журнал</a>
+        <a href="#mission">О бренде</a>
+        <a href="#form">Записаться</a>
+      </div>
+      <div class="footer__col">
+        <h4>Контакты</h4>
+        <a href="mailto:alisbeautyclub@gmail.com">alisbeautyclub@gmail.com</a>
+        <a href="https://t.me/alisbeautyclub" target="_blank" rel="noopener">Telegram: @alisbeautyclub</a>
+        <a href="https://wa.me/79888887728" target="_blank" rel="noopener">WhatsApp: +7 988 888 77 28</a>
+        <a href="#footer">Служба поддержки</a>
+      </div>
+      <div class="footer__col footer__col--form" id="form">
+        <h4>Оставить заявку</h4>
+        <p>Напишите нам — beauty-менеджер свяжется с вами.</p>
+        <a href="https://t.me/alisbeautyclub" target="_blank" rel="noopener" class="btn btn--pill btn--accent">Написать в Telegram</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <div class="footer__links">
+        <a href="#">Политика обработки персональных данных</a>
+        <a href="#">Разработка сайта</a>
+      </div>
+      <span>© 2025–2026 A&rsquo;LIS BEAUTY. Все права защищены.</span>
+    </div>
+  </footer>
+
+  <!-- ============ 12. Cookie-баннер ============ -->
+  <div class="cookie" id="cookie" hidden>
+    <p class="cookie__text">Мы используем обязательные и аналитические cookie, чтобы сайт работал корректно и был удобнее для вас.</p>
+    <div class="cookie__actions">
+      <button class="btn btn--pill btn--accent" data-cookie="all">Принять всё</button>
+      <button class="btn btn--pill btn--outline" data-cookie="essential">Только обязательные</button>
+      <button class="btn btn--pill btn--ghost" data-cookie="settings">Настройки Cookie</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
