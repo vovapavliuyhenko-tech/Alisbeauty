@@ -13,40 +13,48 @@ import {
 interface Item {
   category: string;
   name: string;
+  subtitle: string;
 }
 
 // Тёмные фоновые градиенты-плейсхолдеры (замените реальными фото в /public при желании).
 const bgStyles = [
-  'linear-gradient(135deg,#2a2320,#0e0c0b 70%)',
-  'linear-gradient(135deg,#241f28,#0d0b0f 70%)',
-  'linear-gradient(135deg,#2c2622,#100d0b 70%)',
-  'linear-gradient(135deg,#222528,#0b0d0e 70%)',
+  'linear-gradient(135deg,#3a322c,#0e0c0b 75%)',
+  'linear-gradient(135deg,#2b2a30,#0d0b0f 75%)',
+  'linear-gradient(135deg,#3a2f28,#100d0b 75%)',
+  'linear-gradient(135deg,#26302f,#0b0d0e 75%)',
+];
+const cardImg = [
+  'linear-gradient(135deg,#6f6152,#2a2320)',
+  'linear-gradient(135deg,#5c5560,#241f28)',
+  'linear-gradient(135deg,#6e5a48,#2c2622)',
+  'linear-gradient(135deg,#4f605c,#222528)',
 ];
 
-// Фон одного проекта — плавно проявляется/затухает по прогрессу скролла.
+// Доля сегмента, отведённая на въезд/выезд карточки (остальное — «зависание» по центру).
+const T = 0.3;
+
+// Фон одного проекта: проявляется на своём сегменте + лёгкий параллакс.
 function ProjectBg({ progress, i, n }: { progress: MotionValue<number>; i: number; n: number }) {
   const seg = 1 / n;
   const start = i * seg;
   const end = (i + 1) * seg;
+  const t = seg * T;
   const first = i === 0;
   const last = i === n - 1;
   const opacity = useTransform(
     progress,
-    [start - 0.02, start + 0.08, end - 0.08, end + 0.02],
+    [start, start + t, end - t, end],
     [first ? 1 : 0, 1, 1, last ? 1 : 0]
   );
-  const scale = useTransform(progress, [start, end], [1.08, 1]);
+  const y = useTransform(progress, [start, end], ['-6%', '6%']); // параллакс фона
   return (
-    <motion.div
-      style={{ opacity, background: bgStyles[i % bgStyles.length] }}
-      className="absolute inset-0"
-    >
-      <motion.div style={{ scale }} className="absolute inset-0 opacity-30 mix-blend-overlay [background:radial-gradient(60%_60%_at_30%_20%,#fff,transparent)]" />
+    <motion.div style={{ opacity }} className="absolute inset-0 overflow-hidden">
+      <motion.div style={{ y, background: bgStyles[i % bgStyles.length] }} className="absolute inset-[-8%]" />
     </motion.div>
   );
 }
 
-// Карточка проекта — проявляется и уплывает вверх (перетекание одна в другую).
+// Карточка проекта: въезжает снизу → зависает по центру → уезжает вверх (перетекание).
 function ProjectCard({
   progress,
   i,
@@ -63,28 +71,25 @@ function ProjectCard({
   const seg = 1 / n;
   const start = i * seg;
   const end = (i + 1) * seg;
+  const t = seg * T;
   const first = i === 0;
   const last = i === n - 1;
-  const opacity = useTransform(
+
+  // Позиция по вертикали в процентах экрана: снизу (110%) → центр (0) → вверх (-110%)
+  const y = useTransform(
     progress,
-    [start, start + 0.04, end - 0.04, end],
-    [first ? 1 : 0, 1, 1, last ? 1 : 0]
+    first ? [start, end - t, end] : last ? [start, start + t, end] : [start, start + t, end - t, end],
+    first ? ['0%', '0%', '-110%'] : last ? ['110%', '0%', '0%'] : ['110%', '0%', '0%', '-110%']
   );
-  const y = useTransform(progress, [start, end], [first ? 0 : 60, last ? 0 : -60]);
 
   return (
-    <motion.div
-      style={{ opacity, y }}
-      className="pointer-events-none absolute inset-0 flex items-center justify-center px-6"
-    >
-      <div className="w-full max-w-[380px] rounded-md bg-white p-8 text-center text-[#1a1512] shadow-2xl">
+    <motion.div style={{ y }} className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
+      <div className="pointer-events-auto w-full max-w-[380px] bg-white p-8 text-center text-[#1a1512] shadow-2xl">
         <p className="mx-auto max-w-[240px] text-[13px] leading-snug text-[#6b6560]">{item.category}</p>
-        <p className="my-7 font-display text-4xl tracking-wide sm:text-5xl">{item.name}</p>
-        <p className="text-[13px] uppercase tracking-[0.15em] text-[#8a827b]">{links}</p>
-        <div
-          className="mt-6 aspect-[4/3] w-full rounded-sm"
-          style={{ background: bgStyles[i % bgStyles.length] }}
-        />
+        <p className="mt-6 font-display text-4xl tracking-wide sm:text-5xl">{item.name}</p>
+        <p className="mt-1 text-sm text-[#8a827b]">{item.subtitle}</p>
+        <p className="mt-5 text-[13px] uppercase tracking-[0.15em] text-[#8a827b]">{links}</p>
+        <div className="mt-6 aspect-[4/3] w-full" style={{ background: cardImg[i % cardImg.length] }} />
       </div>
     </motion.div>
   );
@@ -99,8 +104,7 @@ export default function PortfolioScroll() {
   const [index, setIndex] = useState(1);
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    const idx = Math.min(n, Math.max(1, Math.floor(v * n) + 1));
-    setIndex(idx);
+    setIndex(Math.min(n, Math.max(1, Math.floor(v * n) + 1)));
   });
 
   return (
@@ -117,17 +121,13 @@ export default function PortfolioScroll() {
           <ProjectCard key={i} progress={scrollYProgress} i={i} n={n} item={item} links={t('links')} />
         ))}
 
-        {/* Нижние подписи: (портфолио) слева, счётчик справа */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-8 mx-auto flex w-[92%] max-w-content items-center justify-between text-white/90">
-          <span className="text-lg tracking-wide sm:text-2xl">({t('label')})</span>
-          <span className="text-lg tracking-wide sm:text-2xl">
-            ({index})
-          </span>
-        </div>
-
-        {/* Вступительный текст (как на референсе, у нижнего края) */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-20 mx-auto w-[92%] max-w-content">
-          <p className="max-w-xl text-sm leading-relaxed text-white/70">{t('intro')}</p>
+        {/* Фиксированный оверлей: вступление, метка, счётчик */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto w-[92%] max-w-content pb-8">
+          <p className="mb-4 max-w-md text-xs leading-relaxed text-white/70">{t('intro')}</p>
+          <div className="flex items-end justify-between text-white/90">
+            <span className="text-lg tracking-wide sm:text-2xl">({t('label')})</span>
+            <span className="text-lg tracking-wide sm:text-2xl">({index})</span>
+          </div>
         </div>
       </div>
     </section>

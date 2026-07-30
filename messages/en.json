@@ -125,10 +125,10 @@
     "intro": "Our portfolio reflects our style and craft. Here are some looks and cases; find more work on our Instagram.",
     "links": "instagram / more",
     "items": [
-      { "category": "Turnkey wedding look", "name": "Wedding" },
-      { "category": "On-location stylist team", "name": "Concierge" },
-      { "category": "Brand photoshoot", "name": "Editorial" },
-      { "category": "Complete event look", "name": "Evening" }
+      { "category": "Turnkey wedding look", "name": "Wedding", "subtitle": "Bridal styling" },
+      { "category": "On-location stylist team", "name": "Concierge", "subtitle": "Beauty concierge" },
+      { "category": "Brand photoshoot", "name": "Editorial", "subtitle": "Brand editorial" },
+      { "category": "Complete event look", "name": "Evening", "subtitle": "Evening looks" }
     ]
   },
   "gallery": {

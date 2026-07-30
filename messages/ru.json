@@ -125,10 +125,10 @@
     "intro": "Наше портфолио — отражение стиля и мастерства. Здесь собраны некоторые образы и кейсы; больше работ — в нашем Instagram.",
     "links": "instagram / подробнее",
     "items": [
-      { "category": "Свадебный образ под ключ", "name": "Wedding" },
-      { "category": "Выездная команда стилистов", "name": "Concierge" },
-      { "category": "Съёмка для бренда", "name": "Editorial" },
-      { "category": "Полный образ на мероприятие", "name": "Evening" }
+      { "category": "Свадебный образ под ключ", "name": "Wedding", "subtitle": "Bridal styling" },
+      { "category": "Выездная команда стилистов", "name": "Concierge", "subtitle": "Beauty concierge" },
+      { "category": "Съёмка для бренда", "name": "Editorial", "subtitle": "Brand editorial" },
+      { "category": "Полный образ на мероприятие", "name": "Evening", "subtitle": "Evening looks" }
     ]
   },
   "gallery": {
