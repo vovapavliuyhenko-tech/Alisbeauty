@@ -47,22 +47,41 @@ function CardContent({
 }) {
   const c = n > 1 ? i / (n - 1) : 0; // центр проекта i по прогрессу
   const step = n > 1 ? 1 / (n - 1) : 1;
-  const e = step * 0.16; // короткое перекрёстное затухание у середины перехода
-  const midL = c - step / 2; // граница слева
-  const midR = c + step / 2; // граница справа
+  const s = step * 0.25; // ширина «проскальзывания» на стыке
+  const mL = c - step / 2; // стык с предыдущим
+  const mR = c + step / 2; // стык со следующим
 
-  // Контент держится сплошным на своём отрезке, быстро крестится у границ.
-  const input =
-    i === 0
-      ? [midR - e, midR + e]
-      : i === n - 1
-        ? [midL - e, midL + e]
-        : [midL - e, midL + e, midR - e, midR + e];
-  const output = i === 0 ? [1, 0] : i === n - 1 ? [0, 1] : [0, 1, 1, 0];
-  const opacity = useTransform(progress, input, output);
+  // Контент едет внутри неподвижной рамки: снизу → центр (зависание) → вверх.
+  // Рамка обрезает лишнее (overflow-hidden), поэтому тексты не накладываются.
+  const first = i === 0;
+  const last = i === n - 1;
+  const input = first
+    ? [0, mR - s, mR + s]
+    : last
+      ? [mL - s, mL + s, 1]
+      : [mL - s, mL + s, mR - s, mR + s];
+  const output = first
+    ? ['0%', '0%', '-120%']
+    : last
+      ? ['120%', '0%', '0%']
+      : ['120%', '0%', '0%', '-120%'];
+  const y = useTransform(progress, input, output);
+
+  // Лёгкое затухание у краёв, чтобы уезжающий текст не обрезался резко.
+  const oIn = useTransform(
+    progress,
+    first ? [0, 0.0001] : [mL - s, mL - s * 0.4],
+    [first ? 1 : 0, 1]
+  );
+  const oOut = useTransform(
+    progress,
+    last ? [0.9999, 1] : [mR + s * 0.4, mR + s],
+    [1, last ? 1 : 0]
+  );
+  const opacity = useTransform([oIn, oOut], ([a, b]: number[]) => Math.min(a, b));
 
   return (
-    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
+    <motion.div style={{ y, opacity }} className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
       <p className="mx-auto max-w-[240px] text-[13px] leading-snug text-[#6b6560]">{item.category}</p>
       <p className="mt-6 font-display text-4xl tracking-wide sm:text-5xl">{item.name}</p>
       <p className="mt-1 text-sm text-[#8a827b]">{item.subtitle}</p>
@@ -100,7 +119,7 @@ export default function PortfolioScroll() {
 
         {/* Неподвижная карточка по центру — меняется только её содержимое */}
         <div className="absolute inset-0 flex items-center justify-center px-6">
-          <div className="relative h-[540px] w-full max-w-[380px] bg-white text-[#1a1512] shadow-2xl">
+          <div className="relative h-[540px] w-full max-w-[380px] overflow-hidden bg-white text-[#1a1512] shadow-2xl">
             {items.map((item, i) => (
               <CardContent key={i} progress={scrollYProgress} i={i} n={n} item={item} links={t('links')} />
             ))}
