@@ -17,16 +17,19 @@ const cardImg = [
   'linear-gradient(135deg,#4f605c,#222528)',
 ];
 
-// Плитки коллажа-фона (плейсхолдеры — замените реальными фото работ).
+// Плитки коллажа-фона (плейсхолдеры «под фото» — замените реальными фото работ).
+// Разнотон, как настоящий фотоколлаж на референсе.
 const tilePalette = [
-  'linear-gradient(135deg,#4a4038,#241f1b)',
-  'linear-gradient(135deg,#3a3a42,#1a1a20)',
-  'linear-gradient(135deg,#5a4a3a,#2a2018)',
-  'linear-gradient(135deg,#3d4a47,#181f1d)',
-  'linear-gradient(135deg,#6a5c4c,#322a22)',
-  'linear-gradient(135deg,#463c48,#201a24)',
-  'linear-gradient(135deg,#554438,#2a201a)',
-  'linear-gradient(135deg,#404a48,#1a201f)',
+  'linear-gradient(140deg,#d8cbb6,#b7a488)',
+  'linear-gradient(140deg,#7d5b48,#4a3428)',
+  'linear-gradient(140deg,#3f4a44,#26302b)',
+  'linear-gradient(140deg,#c96f4c,#8a4630)',
+  'linear-gradient(140deg,#e5ded2,#c7bca8)',
+  'linear-gradient(140deg,#8a2b33,#5a1c22)',
+  'linear-gradient(140deg,#5a5560,#33303a)',
+  'linear-gradient(140deg,#b79a72,#7d6448)',
+  'linear-gradient(140deg,#2f3a3f,#1a2226)',
+  'linear-gradient(140deg,#c7a98c,#9a7a5c)',
 ];
 
 export default function PortfolioScroll() {
@@ -62,7 +65,7 @@ export default function PortfolioScroll() {
             />
           ))}
         </motion.div>
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-black/35" />
       </div>
 
       {/* Карточки проектов поверх коллажа — обычный скролл, по центру каждой */}
