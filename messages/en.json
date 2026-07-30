@@ -120,6 +120,17 @@
     "subtitle": "A few examples from our portfolio",
     "cta": "View gallery"
   },
+  "portfolio": {
+    "label": "portfolio",
+    "intro": "Our portfolio reflects our style and craft. Here are some looks and cases; find more work on our Instagram.",
+    "links": "instagram / more",
+    "items": [
+      { "category": "Turnkey wedding look", "name": "Wedding" },
+      { "category": "On-location stylist team", "name": "Concierge" },
+      { "category": "Brand photoshoot", "name": "Editorial" },
+      { "category": "Complete event look", "name": "Evening" }
+    ]
+  },
   "gallery": {
     "eyebrow": "Gallery",
     "title": "Photo gallery",

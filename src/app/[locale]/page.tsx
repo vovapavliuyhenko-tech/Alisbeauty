@@ -6,7 +6,7 @@ import Concierge from '@/components/sections/Concierge';
 import Uniqueness from '@/components/sections/Uniqueness';
 import FullLook from '@/components/sections/FullLook';
 import HowTo from '@/components/sections/HowTo';
-import Works from '@/components/sections/Works';
+import PortfolioScroll from '@/components/sections/PortfolioScroll';
 import Gallery from '@/components/sections/Gallery';
 import Reviews from '@/components/sections/Reviews';
 import Price from '@/components/sections/Price';
@@ -26,7 +26,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Uniqueness />
       <FullLook />
       <HowTo />
-      <Works />
+      <PortfolioScroll />
       <Gallery />
       <Reviews />
       <Price />
