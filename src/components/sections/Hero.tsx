@@ -27,11 +27,11 @@ function VideoHalf({ src, gradient }: { src: string; gradient: string }) {
 export default function Hero() {
   const t = useTranslations('hero');
 
-  // Scroll-эффект на большом логотипе снизу: в начале он увеличен и «растянут»,
-  // при скролле вниз плавно садится в нормальный размер.
+  // Scroll-эффект на большом логотипе снизу: в начале он растянут на всю ширину экрана
+  // (широкий), при скролле вниз плавно садится в нормальный размер по центру.
   const { scrollY } = useScroll();
-  const logoScale = useTransform(scrollY, [0, 360], [1.35, 1]);
-  const logoTracking = useTransform(scrollY, [0, 360], ['0.06em', '-0.01em']);
+  const logoScaleX = useTransform(scrollY, [0, 380], [4, 1]);
+  const logoScaleY = useTransform(scrollY, [0, 380], [1.5, 1]);
 
   return (
     <section className="relative h-[100svh] w-full overflow-hidden">
@@ -81,7 +81,7 @@ export default function Hero() {
           Нижняя треть букв «утоплена» в кремовую полосу — они выныривают снизу. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center">
         <motion.span
-          style={{ scale: logoScale, letterSpacing: logoTracking, transformOrigin: 'center bottom' }}
+          style={{ scaleX: logoScaleX, scaleY: logoScaleY, transformOrigin: 'center bottom' }}
           className="select-none font-display leading-[0.7] text-bg text-[clamp(52px,10vw,150px)] will-change-transform"
         >
           A&apos;LIS
