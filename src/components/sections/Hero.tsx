@@ -45,7 +45,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-[620px] text-[28px] leading-[1.12] sm:text-[36px] lg:text-[44px]"
+            className="mx-auto max-w-[700px] text-[24px] leading-[1.15] sm:text-[32px] lg:text-[40px]"
           >
             {t('title')}
           </motion.h1>
@@ -53,7 +53,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.9, delay: 0.35 }}
-            className="mx-auto mt-5 max-w-[520px] text-[15px] leading-relaxed text-white/85 sm:text-[17px]"
+            className="mx-auto mt-5 max-w-[460px] text-[14px] leading-relaxed text-white/85 sm:text-[16px]"
           >
             {t('subtitle')}
           </motion.p>
