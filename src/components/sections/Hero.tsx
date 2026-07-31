@@ -45,7 +45,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-5xl lg:text-6xl"
+            className="mx-auto max-w-[620px] text-[28px] leading-[1.12] sm:text-[36px] lg:text-[44px]"
           >
             {t('title')}
           </motion.h1>
@@ -53,7 +53,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.9, delay: 0.35 }}
-            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
+            className="mx-auto mt-5 max-w-[520px] text-[15px] leading-relaxed text-white/85 sm:text-[17px]"
           >
             {t('subtitle')}
           </motion.p>
@@ -63,7 +63,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.55 }}
             onClick={() => trackGoal('hero_services')}
-            className="mt-10 inline-block rounded-full bg-accent px-10 py-4 font-medium text-white transition hover:bg-accent-2"
+            className="mt-8 inline-block rounded-full bg-accent px-9 py-3.5 text-[15px] font-medium text-white transition hover:bg-accent-2"
           >
             {t('ctaServices')}
           </motion.a>
