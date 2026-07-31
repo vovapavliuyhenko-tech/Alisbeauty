@@ -25,13 +25,14 @@
   },
   "hero": {
     "eyebrow": "A'LIS Beauty concierge",
-    "title": "A unique beauty service for special occasions",
-    "subtitle": "A premium beauty salon and on-location beauty concierge in Novorossiysk",
+    "title": "A'LIS — a beauty service, not just a salon",
+    "subtitle": "A premium salon and on-location concierge: complete turnkey looks, a coordinated team of masters and a flawless result right on time for your event",
     "salon": "Salon",
     "salonDesc": "Beauty and aesthetics in our space",
     "conciergeCard": "Concierge",
     "conciergeDesc": "A team of stylists travelling to your event",
-    "cta": "Book now"
+    "cta": "Book now",
+    "ctaServices": "View services"
   },
   "about": {
     "eyebrow": "About",

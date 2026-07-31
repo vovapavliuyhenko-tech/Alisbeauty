@@ -1,100 +1,74 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { ArrowDown, Sparkles, Scissors } from 'lucide-react';
-import { openBookModal } from '../BookModal';
+import { motion } from 'framer-motion';
 import { trackGoal } from '@/lib/metrika';
+
+// Плейсхолдер-градиенты под видео (пока не добавлены реальные ролики).
+// Положите файлы в public/videos/hero-left.mp4 и public/videos/hero-right.mp4 —
+// они подхватятся автоматически, а до этого показывается тёплый градиент.
+function VideoHalf({ src, gradient }: { src: string; gradient: string }) {
+  return (
+    <div className="relative h-full w-full overflow-hidden" style={{ background: gradient }}>
+      <video
+        className="h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    </div>
+  );
+}
 
 export default function Hero() {
   const t = useTranslations('hero');
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={ref} className="relative flex min-h-[100svh] items-center overflow-hidden">
-      {/* Параллакс-фон */}
-      <motion.div
-        style={{ y }}
-        className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--surface-alt)] via-bg to-bg"
-      />
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-60 [background:radial-gradient(60%_50%_at_50%_0%,rgba(217,121,94,0.12),transparent)]" />
+    <section className="relative h-[100svh] w-full overflow-hidden">
+      {/* Два видео на весь экран: слева и справа */}
+      <div className="absolute inset-0 grid grid-cols-2">
+        <VideoHalf src="/videos/hero-left.mp4" gradient="linear-gradient(135deg,#6e5a48,#2c2622)" />
+        <VideoHalf src="/videos/hero-right.mp4" gradient="linear-gradient(135deg,#8a6f5c,#3a2f28)" />
+      </div>
 
-      <motion.div style={{ opacity }} className="mx-auto w-[92%] max-w-content pt-28 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-6 text-xs uppercase tracking-[0.4em] text-accent"
-        >
-          {t('eyebrow')}
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-4xl text-5xl leading-[1.05] sm:text-6xl lg:text-7xl"
-        >
-          {t('title')}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="mx-auto mt-6 max-w-xl text-muted"
-        >
-          {t('subtitle')}
-        </motion.p>
+      {/* Затемнение для читабельности текста */}
+      <div className="absolute inset-0 bg-black/40" />
 
-        {/* Две карточки выбора направления */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.55 }}
-          className="mx-auto mt-12 grid max-w-2xl gap-4 sm:grid-cols-2"
-        >
-          <a
-            href="#about"
-            className="group rounded-2xl border border-line bg-surface/60 p-6 text-left backdrop-blur transition hover:border-accent"
+      {/* Контент поверх видео */}
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <div className="w-full max-w-3xl text-center text-white">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-5xl lg:text-6xl"
           >
-            <Scissors className="mb-3 text-accent" size={24} />
-            <p className="font-display text-2xl">{t('salon')}</p>
-            <p className="mt-1 text-sm text-muted">{t('salonDesc')}</p>
-          </a>
-          <a
-            href="#concierge"
-            className="group rounded-2xl border border-line bg-surface/60 p-6 text-left backdrop-blur transition hover:border-accent"
+            {t('title')}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.35 }}
+            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
           >
-            <Sparkles className="mb-3 text-accent" size={24} />
-            <p className="font-display text-2xl">{t('conciergeCard')}</p>
-            <p className="mt-1 text-sm text-muted">{t('conciergeDesc')}</p>
-          </a>
-        </motion.div>
-
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 0.75 }}
-          onClick={() => {
-            trackGoal('book_open');
-            openBookModal();
-          }}
-          className="mt-10 rounded-full bg-accent px-8 py-3.5 font-medium text-bg transition hover:bg-accent-2"
-        >
-          {t('cta')}
-        </motion.button>
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted"
-      >
-        <ArrowDown size={22} />
-      </motion.div>
+            {t('subtitle')}
+          </motion.p>
+          <motion.a
+            href="#price"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.55 }}
+            onClick={() => trackGoal('hero_services')}
+            className="mt-10 inline-block rounded-full bg-accent px-10 py-4 font-medium text-white transition hover:bg-accent-2"
+          >
+            {t('ctaServices')}
+          </motion.a>
+        </div>
+      </div>
     </section>
   );
 }
