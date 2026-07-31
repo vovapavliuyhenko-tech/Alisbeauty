@@ -27,11 +27,11 @@ function VideoHalf({ src, gradient }: { src: string; gradient: string }) {
 export default function Hero() {
   const t = useTranslations('hero');
 
-  // Scroll-эффект: сверху заголовок крупнее и «растянут» (широкий трекинг),
-  // при скролле вниз плавно садится в нормальный размер по центру.
+  // Scroll-эффект на большом логотипе снизу: в начале он увеличен и «растянут»,
+  // при скролле вниз плавно садится в нормальный размер.
   const { scrollY } = useScroll();
-  const titleScale = useTransform(scrollY, [0, 320], [1.4, 1]);
-  const titleTracking = useTransform(scrollY, [0, 320], ['0.08em', '0em']);
+  const logoScale = useTransform(scrollY, [0, 360], [1.35, 1]);
+  const logoTracking = useTransform(scrollY, [0, 360], ['0.06em', '-0.01em']);
 
   return (
     <section className="relative h-[100svh] w-full overflow-hidden">
@@ -48,11 +48,10 @@ export default function Hero() {
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div className="w-full max-w-3xl text-center text-white">
           <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ scale: titleScale, letterSpacing: titleTracking }}
-            className="mx-auto max-w-[700px] text-[24px] leading-[1.15] will-change-transform sm:text-[32px] lg:text-[40px]"
+            className="mx-auto max-w-[700px] text-[24px] leading-[1.15] sm:text-[32px] lg:text-[40px]"
           >
             {t('title')}
           </motion.h1>
@@ -81,9 +80,12 @@ export default function Hero() {
           сквозь просветы букв видно видео — как на референсе O'CARE.
           Нижняя треть букв «утоплена» в кремовую полосу — они выныривают снизу. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center">
-        <span className="select-none font-display leading-[0.7] text-bg tracking-tight text-[clamp(52px,10vw,150px)]">
+        <motion.span
+          style={{ scale: logoScale, letterSpacing: logoTracking, transformOrigin: 'center bottom' }}
+          className="select-none font-display leading-[0.7] text-bg text-[clamp(52px,10vw,150px)] will-change-transform"
+        >
           A&apos;LIS
-        </span>
+        </motion.span>
         {/* Кремовая полоса перекрывает низ букв — они «выныривают» из секции */}
         <div className="-mt-[0.28em] h-[7vh] w-full bg-bg text-[clamp(52px,10vw,150px)]" />
       </div>
