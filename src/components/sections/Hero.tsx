@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { trackGoal } from '@/lib/metrika';
 
 // Плейсхолдер-градиенты под видео (пока не добавлены реальные ролики).
@@ -27,6 +27,12 @@ function VideoHalf({ src, gradient }: { src: string; gradient: string }) {
 export default function Hero() {
   const t = useTranslations('hero');
 
+  // Scroll-эффект: сверху заголовок крупнее и «растянут» (широкий трекинг),
+  // при скролле вниз плавно садится в нормальный размер по центру.
+  const { scrollY } = useScroll();
+  const titleScale = useTransform(scrollY, [0, 320], [1.4, 1]);
+  const titleTracking = useTransform(scrollY, [0, 320], ['0.08em', '0em']);
+
   return (
     <section className="relative h-[100svh] w-full overflow-hidden">
       {/* Два видео на весь экран: слева и справа */}
@@ -42,10 +48,11 @@ export default function Hero() {
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div className="w-full max-w-3xl text-center text-white">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-[700px] text-[24px] leading-[1.15] sm:text-[32px] lg:text-[40px]"
+            style={{ scale: titleScale, letterSpacing: titleTracking }}
+            className="mx-auto max-w-[700px] text-[24px] leading-[1.15] will-change-transform sm:text-[32px] lg:text-[40px]"
           >
             {t('title')}
           </motion.h1>
