@@ -69,6 +69,15 @@ export default function Hero() {
           </motion.a>
         </div>
       </div>
+
+      {/* Большой логотип-«вырез» снизу: буквы кремового цвета сливаются с секцией ниже,
+          сквозь просветы букв видно видео — как на референсе O'CARE */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center">
+        <span className="select-none font-display leading-[0.66] text-bg text-[19vw] tracking-tight">
+          A&apos;LIS
+        </span>
+        <div className="h-[5vh] w-full bg-bg" />
+      </div>
     </section>
   );
 }
