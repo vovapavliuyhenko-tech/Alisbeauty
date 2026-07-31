@@ -70,13 +70,15 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Большой логотип-«вырез» снизу: буквы кремового цвета сливаются с секцией ниже,
-          сквозь просветы букв видно видео — как на референсе O'CARE */}
+      {/* Большой логотип снизу: буквы кремового цвета сливаются с секцией ниже,
+          сквозь просветы букв видно видео — как на референсе O'CARE.
+          Нижняя треть букв «утоплена» в кремовую полосу — они выныривают снизу. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center">
-        <span className="select-none font-display leading-[0.66] text-bg text-[19vw] tracking-tight">
+        <span className="select-none font-display leading-[0.7] text-bg tracking-tight text-[clamp(52px,10vw,150px)]">
           A&apos;LIS
         </span>
-        <div className="h-[5vh] w-full bg-bg" />
+        {/* Кремовая полоса перекрывает низ букв — они «выныривают» из секции */}
+        <div className="-mt-[0.28em] h-[7vh] w-full bg-bg text-[clamp(52px,10vw,150px)]" />
       </div>
     </section>
   );
