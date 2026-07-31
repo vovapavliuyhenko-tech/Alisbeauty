@@ -34,7 +34,7 @@ export default function Hero() {
   const logoScaleY = useTransform(scrollY, [0, 380], [1.5, 1]);
 
   return (
-    <section className="relative h-[100svh] w-full overflow-hidden">
+    <section className="relative h-[118svh] w-full overflow-hidden">
       {/* Два видео на весь экран: слева и справа */}
       <div className="absolute inset-0 grid grid-cols-2">
         <VideoHalf src="/videos/hero-left.mp4" gradient="linear-gradient(135deg,#6e5a48,#2c2622)" />
