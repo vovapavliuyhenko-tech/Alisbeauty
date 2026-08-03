@@ -1,93 +1,105 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { openBookModal } from '@/components/BookModal';
+import { site } from '@/config/site';
 import { trackGoal } from '@/lib/metrika';
 
-// Плейсхолдер-градиенты под видео (пока не добавлены реальные ролики).
-// Положите файлы в public/videos/hero-left.mp4 и public/videos/hero-right.mp4 —
-// они подхватятся автоматически, а до этого показывается тёплый градиент.
-function VideoHalf({ src, gradient }: { src: string; gradient: string }) {
+// Фоновое видео/градиент под тёмной вуалью — как крупный визуал героя на референсе.
+function HeroMedia() {
   return (
-    <div className="relative h-full w-full overflow-hidden" style={{ background: gradient }}>
-      <video
-        className="h-full w-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+    <div className="absolute inset-0">
+      <div className="grid h-full w-full grid-cols-2">
+        <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#2c2622,#3a2f28)' }}>
+          <video className="h-full w-full object-cover opacity-70" autoPlay muted loop playsInline preload="auto">
+            <source src="/videos/hero-left.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#3a2f28,#221d1a)' }}>
+          <video className="h-full w-full object-cover opacity-70" autoPlay muted loop playsInline preload="auto">
+            <source src="/videos/hero-right.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      {/* Тёмная вуаль в цвет фона — визуал утоплен, читается крупная типографика */}
+      <div className="absolute inset-0 bg-bg/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" />
     </div>
   );
 }
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 export default function Hero() {
   const t = useTranslations('hero');
 
-  // Scroll-эффект на большом логотипе снизу: в начале он растянут на всю ширину экрана
-  // (широкий), при скролле вниз плавно садится в нормальный размер по центру.
-  const { scrollY } = useScroll();
-  const logoScaleX = useTransform(scrollY, [0, 380], [4, 1]);
-  const logoScaleY = useTransform(scrollY, [0, 380], [1.5, 1]);
-
   return (
-    <section className="relative h-[118svh] w-full overflow-hidden">
-      {/* Два видео на весь экран: слева и справа */}
-      <div className="absolute inset-0 grid grid-cols-2">
-        <VideoHalf src="/videos/hero-left.mp4" gradient="linear-gradient(135deg,#6e5a48,#2c2622)" />
-        <VideoHalf src="/videos/hero-right.mp4" gradient="linear-gradient(135deg,#8a6f5c,#3a2f28)" />
-      </div>
+    <section className="relative flex min-h-svh w-full flex-col justify-end overflow-hidden pb-[6vh] pt-28">
+      <HeroMedia />
 
-      {/* Затемнение для читабельности текста */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="relative mx-auto w-[94%] max-w-content">
+        {/* Верхняя строка-эйброу */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease }}
+          className="mb-6 flex items-center gap-3 text-[12px] uppercase tracking-[0.28em] text-muted"
+        >
+          <span className="h-px w-10 bg-accent" />
+          {t('eyebrow')} · Новороссийск
+        </motion.div>
 
-      {/* Контент поверх видео */}
-      <div className="absolute inset-0 flex items-center justify-center px-6">
-        <div className="w-full max-w-3xl text-center text-white">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-[700px] text-[24px] leading-[1.15] sm:text-[32px] lg:text-[40px]"
-          >
-            {t('title')}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.35 }}
-            className="mx-auto mt-5 max-w-[460px] text-[14px] leading-relaxed text-white/85 sm:text-[16px]"
-          >
-            {t('subtitle')}
-          </motion.p>
-          <motion.a
+        {/* Крупный конденсед-заголовок с serif-акцентом */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.08, ease }}
+          className="max-w-[16ch] font-display text-[13vw] font-500 uppercase leading-[0.92] tracking-[-0.01em] text-text sm:text-[12vw] lg:text-[130px]"
+        >
+          {t('title')}
+        </motion.h1>
+
+        {/* Описание */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, delay: 0.35 }}
+          className="mt-7 max-w-[48ch] text-[15px] leading-relaxed text-muted sm:text-[16px]"
+        >
+          {t('subtitle')}
+        </motion.p>
+
+        {/* Ряд действий */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.5, ease }}
+          className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 text-[14px]"
+        >
+          <a
             href="#price"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.55 }}
             onClick={() => trackGoal('hero_services')}
-            className="mt-8 inline-block rounded-full bg-accent px-9 py-3.5 text-[15px] font-medium text-white transition hover:bg-accent-2"
+            className="group inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 font-medium text-bg transition hover:bg-accent-2"
           >
             {t('ctaServices')}
-          </motion.a>
-        </div>
-      </div>
-
-      {/* Большой логотип снизу: буквы кремового цвета сливаются с секцией ниже,
-          сквозь просветы букв видно видео — как на референсе O'CARE.
-          Нижняя треть букв «утоплена» в кремовую полосу — они выныривают снизу. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center">
-        <motion.span
-          style={{ scaleX: logoScaleX, scaleY: logoScaleY, transformOrigin: 'center bottom' }}
-          className="select-none font-display leading-[0.7] text-bg text-[clamp(52px,10vw,150px)] will-change-transform"
-        >
-          A&apos;LIS
-        </motion.span>
-        {/* Кремовая полоса перекрывает низ букв — они «выныривают» из секции */}
-        <div className="-mt-[0.28em] h-[7vh] w-full bg-bg text-[clamp(52px,10vw,150px)]" />
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </a>
+          <button
+            onClick={() => {
+              trackGoal('book_open');
+              openBookModal();
+            }}
+            className="rounded-full border border-line px-8 py-3.5 text-text transition hover:border-accent hover:text-accent"
+          >
+            {t('cta')}
+          </button>
+          <div className="ml-1 flex items-center gap-3 text-muted">
+            <a href={site.instagramSalon} target="_blank" rel="noopener noreferrer" className="transition hover:text-text">inst*</a>
+            <span className="text-muted/40">/</span>
+            <a href={site.telegram} target="_blank" rel="noopener noreferrer" className="transition hover:text-text">tg</a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

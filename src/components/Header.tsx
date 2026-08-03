@@ -9,6 +9,9 @@ import { openBookModal } from './BookModal';
 import { navItems, site } from '@/config/site';
 import { trackGoal } from '@/lib/metrika';
 
+// Пункты, показываемые инлайн в шапке на десктопе (как ряд ссылок через «/» на референсе)
+const inlineNav = ['about', 'concierge', 'gallery', 'price', 'contacts'] as const;
+
 export default function Header() {
   const t = useTranslations('nav');
   const [scrolled, setScrolled] = useState(false);
@@ -55,50 +58,55 @@ export default function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? 'bg-bg/90 backdrop-blur-md' : 'bg-transparent'
+          scrolled ? 'bg-bg/85 backdrop-blur-md' : 'bg-transparent'
         }`}
       >
-        {/* Верхняя тонкая строка */}
-        <div className="hidden border-b border-line/60 lg:block">
-          <div className="mx-auto flex h-9 w-[94%] max-w-content items-center justify-between text-[11px] tracking-wide text-muted">
-            <a href={`tel:${site.whatsappNumber.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-text">
-              <span>🇷🇺</span> {site.whatsappNumber}
-            </a>
-            <LocaleSwitcher />
-          </div>
-        </div>
-
-        {/* Основной бар-пилюля */}
-        <div className="mx-auto w-[94%] max-w-content py-3">
-          <div
-            className={`relative flex h-14 items-center justify-between rounded-full border border-line px-5 sm:px-7 ${
-              scrolled ? 'bg-surface/70' : 'bg-surface/40'
-            } backdrop-blur-sm`}
+        <div className="mx-auto flex h-16 w-[94%] max-w-content items-center justify-between">
+          {/* Бренд слева */}
+          <a
+            href="#top"
+            className="font-display text-[17px] font-600 uppercase tracking-[0.14em] text-text"
           >
-            {/* Бургер + МЕНЮ (на всех размерах) */}
-            <button
-              onClick={() => setMenu(true)}
-              className="flex items-center gap-3 text-text transition hover:text-accent"
-              aria-label={t('menu')}
-            >
-              <Menu size={22} />
-              <span className="hidden text-[12px] uppercase tracking-[0.22em] sm:inline">{t('menu')}</span>
-            </button>
+            A&apos;LIS <span className="text-accent">BEAUTY</span>
+          </a>
 
-            {/* Центральный логотип */}
-            <a
-              href="#top"
-              className="absolute left-1/2 -translate-x-1/2 font-display text-xl tracking-[0.08em]"
-            >
-              A&apos;LIS <span className="text-accent">BEAUTY</span>
-            </a>
+          {/* Инлайн-навигация через «/» — только десктоп */}
+          <nav className="hidden items-center gap-2 text-[13px] lg:flex">
+            {inlineNav.map((id, i) => (
+              <span key={id} className="flex items-center gap-2">
+                {i > 0 && <span className="text-muted/50">/</span>}
+                <a
+                  href={`#${id}`}
+                  className={`lowercase tracking-wide transition ${
+                    active === id ? 'text-accent' : 'text-muted hover:text-text'
+                  }`}
+                >
+                  {t(id)}
+                </a>
+              </span>
+            ))}
+          </nav>
 
-            {/* Справа: Записаться */}
+          {/* Справа: язык + записаться + бургер */}
+          <div className="flex items-center gap-5">
+            <div className="hidden lg:block">
+              <LocaleSwitcher />
+            </div>
             <button
               onClick={book}
-              className="text-[12px] uppercase tracking-[0.18em] text-accent transition hover:text-accent-2"
+              className="hidden text-[13px] lowercase tracking-wide text-accent transition hover:text-accent-2 sm:inline"
             >
               {t('book')}
+            </button>
+            <button
+              onClick={() => setMenu(true)}
+              className="flex items-center gap-2 text-text transition hover:text-accent"
+              aria-label={t('menu')}
+            >
+              <span className="hidden text-[12px] uppercase tracking-[0.2em] sm:inline lg:hidden">
+                {t('menu')}
+              </span>
+              <Menu size={22} strokeWidth={1.5} />
             </button>
           </div>
         </div>
@@ -115,16 +123,17 @@ export default function Header() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="mx-auto flex h-full w-[92%] max-w-content flex-col">
-              {/* Верх: закрыть */}
-              <div className="flex h-20 items-center justify-end">
+              <div className="flex h-16 items-center justify-between">
+                <span className="font-display text-[17px] uppercase tracking-[0.14em] text-text">
+                  A&apos;LIS <span className="text-accent">BEAUTY</span>
+                </span>
                 <button onClick={() => setMenu(false)} aria-label="close" className="text-text transition hover:text-accent">
                   <X size={30} strokeWidth={1.5} />
                 </button>
               </div>
 
-              {/* Центрированные пункты */}
               <motion.nav
-                className="flex flex-1 flex-col items-center justify-center gap-6 sm:gap-7"
+                className="flex flex-1 flex-col items-center justify-center gap-5 sm:gap-6"
                 initial="hidden"
                 animate="show"
                 variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } }}
@@ -138,10 +147,8 @@ export default function Header() {
                       hidden: { opacity: 0, y: 16 },
                       show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
                     }}
-                    className={`text-sm uppercase tracking-[0.22em] transition sm:text-base ${
-                      active === id
-                        ? 'text-accent underline decoration-1 underline-offset-8'
-                        : 'text-text hover:text-accent'
+                    className={`font-display text-3xl uppercase tracking-[0.06em] transition sm:text-4xl ${
+                      active === id ? 'text-accent' : 'text-text hover:text-accent'
                     }`}
                   >
                     {t(id)}
@@ -149,7 +156,6 @@ export default function Header() {
                 ))}
               </motion.nav>
 
-              {/* Низ: язык, запись, контакты */}
               <div className="flex flex-col items-center gap-6 pb-12">
                 <LocaleSwitcher />
                 <button

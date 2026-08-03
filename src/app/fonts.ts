@@ -1,20 +1,21 @@
-// Шрифты в одном месте — легко заменить на фирменный, когда пришлют.
-// Как на референсе BlancBloom: элегантный высококонтрастный serif для заголовков
-// (аналог их декоративного шрифта) + геометрический гротеск для интерфейса (аналог FuturaPT).
-import { Prata, Montserrat } from 'next/font/google';
+// Шрифты в одном месте. Дизайн как на референсе resayme.ru:
+//  - крупные заголовки: узкий «конденсед» гротеск (аналог Thunder) — Oswald (есть кириллица)
+//  - интерфейс/текст: Inter
+//  - элегантные акценты курсивом: serif (Times/Georgia стек, задаётся в globals.css)
+import { Oswald, Inter } from 'next/font/google';
 
-// Заголовки — Prata (Didone), как декоративный serif на референсе. Одно начертание.
-export const fontDisplay = Prata({
+// Заголовки — узкий конденсед-гротеск, аналог Thunder на референсе
+export const fontDisplay = Oswald({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-display',
   display: 'swap',
 });
 
-// Интерфейс/текст — геометрический гротеск с кириллицей
-export const fontBody = Montserrat({
+// Интерфейс/текст — Inter, как на референсе
+export const fontBody = Inter({
   subsets: ['latin', 'cyrillic'],
-  weight: ['200', '300', '400', '500', '600'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
 });

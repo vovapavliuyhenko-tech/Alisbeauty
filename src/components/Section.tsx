@@ -38,7 +38,7 @@ export default function Section({
             {title && (
               <AnimatedTitle
                 text={title}
-                className="text-4xl sm:text-5xl lg:text-6xl"
+                className="max-w-[18ch] text-5xl uppercase leading-[0.95] tracking-[-0.01em] sm:text-6xl lg:text-7xl"
               />
             )}
             {subtitle && (

@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 /* ===== Дизайн-токены (меняются в одном месте) =====
-   Палитра как на референсе BlancBloom: кремовый фон + тёплый коричневый + коралл. */
+   Палитра как на референсе resayme.ru: почти-чёрный фон + белый + коралл. */
 :root {
-  --bg: #f6f5f1;          /* кремовый фон */
-  --surface: #ffffff;      /* карточки */
-  --surface-alt: #eee9e1;  /* альтернативные секции */
-  --text: #4d392e;         /* тёплый тёмно-коричневый */
-  --muted: #9a897c;        /* приглушённый коричневый */
-  --accent: #6e1b2e;       /* бордово-винный */
-  --accent-2: #8f2740;     /* светлее вина */
-  --line: #d4cfca;         /* линии/границы */
+  --bg: #17191a;           /* почти-чёрный фон */
+  --surface: #202325;      /* карточки — чуть светлее фона */
+  --surface-alt: #1c1e1f;  /* альтернативные секции */
+  --text: #ffffff;         /* белый текст */
+  --muted: #959595;        /* приглушённый серый */
+  --accent: #ff8562;       /* коралловый акцент */
+  --accent-2: #ff9d80;     /* светлее коралла (hover) */
+  --line: #2e3234;         /* тонкие линии/границы на тёмном */
 }
 
 * {
@@ -80,10 +80,15 @@ html.lenis body {
   outline-offset: 2px;
 }
 
-/* Заголовки — элегантный serif Didone (Prata), одно начертание */
+/* Заголовки — узкий конденсед-гротеск (Oswald), как крупная типографика на референсе */
 h1, h2, h3, h4 {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: 0.005em;
+  font-family: var(--font-display), 'Oswald', system-ui, sans-serif;
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+/* Элегантный serif-акцент курсивом (как Times New Roman на референсе) */
+.font-serif-accent {
+  font-family: 'Times New Roman', Georgia, serif;
 }
