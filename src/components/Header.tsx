@@ -9,20 +9,24 @@ import { openBookModal } from './BookModal';
 import { navItems, site } from '@/config/site';
 import { trackGoal } from '@/lib/metrika';
 
-// Пункты, показываемые инлайн в шапке на десктопе (как ряд ссылок через «/» на референсе)
-const inlineNav = ['about', 'concierge', 'gallery', 'price', 'contacts'] as const;
+// Инлайн-навигация в шапке (правый верх, две строки через «/») — как на референсе
+const inlineNav = ['about', 'concierge', 'gallery', 'price', 'form', 'contacts'] as const;
 
 export default function Header() {
   const t = useTranslations('nav');
-  const [scrolled, setScrolled] = useState(false);
+  const [overHero, setOverHero] = useState(true);
   const [active, setActive] = useState<string>('');
   const [menu, setMenu] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setOverHero(window.scrollY < window.innerHeight * 0.82);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -54,31 +58,31 @@ export default function Header() {
     openBookModal();
   };
 
+  // Цвет текста шапки: чёрный над светлым героем, белый над тёмными секциями
+  const fg = overHero ? 'text-[#17191a]' : 'text-white';
+  const fgMuted = overHero ? 'text-[#17191a]/60' : 'text-white/55';
+
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? 'bg-bg/85 backdrop-blur-md' : 'bg-transparent'
-        }`}
-      >
-        <div className="mx-auto flex h-16 w-[94%] max-w-content items-center justify-between">
+      <header className="fixed inset-x-0 top-0 z-50">
+        <div className="mx-auto flex w-[94%] max-w-content items-start justify-between pt-6">
           {/* Бренд слева */}
           <a
             href="#top"
-            className="font-display text-[17px] font-600 uppercase tracking-[0.14em] text-text"
+            className={`font-display text-[22px] leading-none tracking-tight transition-colors ${fg}`}
           >
-            A&apos;LIS <span className="text-accent">BEAUTY</span>
+            a&apos;lis
           </a>
 
-          {/* Инлайн-навигация через «/» — только десктоп */}
-          <nav className="hidden items-center gap-2 text-[13px] lg:flex">
+          {/* Инлайн-навигация справа (две строки, через «/») — десктоп */}
+          <nav className="hidden max-w-[420px] flex-wrap items-center justify-end gap-x-2 gap-y-1 text-right text-[14px] lg:flex">
             {inlineNav.map((id, i) => (
               <span key={id} className="flex items-center gap-2">
-                {i > 0 && <span className="text-muted/50">/</span>}
+                {i > 0 && <span className={fgMuted}>/</span>}
                 <a
                   href={`#${id}`}
-                  className={`lowercase tracking-wide transition ${
-                    active === id ? 'text-accent' : 'text-muted hover:text-text'
+                  className={`lowercase transition-colors ${
+                    active === id ? 'text-accent' : `${fg} hover:text-accent`
                   }`}
                 >
                   {t(id)}
@@ -87,32 +91,18 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Справа: язык + записаться + бургер */}
-          <div className="flex items-center gap-5">
-            <div className="hidden lg:block">
-              <LocaleSwitcher />
-            </div>
-            <button
-              onClick={book}
-              className="hidden text-[13px] lowercase tracking-wide text-accent transition hover:text-accent-2 sm:inline"
-            >
-              {t('book')}
-            </button>
-            <button
-              onClick={() => setMenu(true)}
-              className="flex items-center gap-2 text-text transition hover:text-accent"
-              aria-label={t('menu')}
-            >
-              <span className="hidden text-[12px] uppercase tracking-[0.2em] sm:inline lg:hidden">
-                {t('menu')}
-              </span>
-              <Menu size={22} strokeWidth={1.5} />
-            </button>
-          </div>
+          {/* Бургер — планшет/мобайл */}
+          <button
+            onClick={() => setMenu(true)}
+            className={`transition-colors lg:hidden ${fg} hover:text-accent`}
+            aria-label={t('menu')}
+          >
+            <Menu size={24} strokeWidth={1.5} />
+          </button>
         </div>
       </header>
 
-      {/* Полноэкранное меню по центру */}
+      {/* Полноэкранное меню */}
       <AnimatePresence>
         {menu && (
           <motion.div
@@ -123,17 +113,15 @@ export default function Header() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="mx-auto flex h-full w-[92%] max-w-content flex-col">
-              <div className="flex h-16 items-center justify-between">
-                <span className="font-display text-[17px] uppercase tracking-[0.14em] text-text">
-                  A&apos;LIS <span className="text-accent">BEAUTY</span>
-                </span>
+              <div className="flex items-start justify-between pt-6">
+                <span className="font-display text-[22px] leading-none tracking-tight text-text">a&apos;lis</span>
                 <button onClick={() => setMenu(false)} aria-label="close" className="text-text transition hover:text-accent">
-                  <X size={30} strokeWidth={1.5} />
+                  <X size={28} strokeWidth={1.5} />
                 </button>
               </div>
 
               <motion.nav
-                className="flex flex-1 flex-col items-center justify-center gap-5 sm:gap-6"
+                className="flex flex-1 flex-col items-center justify-center gap-5"
                 initial="hidden"
                 animate="show"
                 variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } }}
@@ -147,7 +135,7 @@ export default function Header() {
                       hidden: { opacity: 0, y: 16 },
                       show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
                     }}
-                    className={`font-display text-3xl uppercase tracking-[0.06em] transition sm:text-4xl ${
+                    className={`text-2xl lowercase transition ${
                       active === id ? 'text-accent' : 'text-text hover:text-accent'
                     }`}
                   >
@@ -170,7 +158,6 @@ export default function Header() {
                 <div className="flex items-center gap-6 text-muted">
                   <a href={site.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="transition hover:text-accent"><Send size={20} /></a>
                   <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="transition hover:text-accent"><MessageCircle size={20} /></a>
-                  <a href={`tel:${site.whatsappNumber.replace(/\s/g, '')}`} className="text-[12px] tracking-wide transition hover:text-accent">{site.whatsappNumber}</a>
                 </div>
               </div>
             </div>

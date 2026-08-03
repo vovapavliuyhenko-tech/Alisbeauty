@@ -71,12 +71,11 @@ export default function PortfolioScroll() {
       {/* Карточки проектов поверх коллажа — обычный скролл, по центру каждой */}
       {items.map((item, i) => (
         <div key={i} className="relative z-10 flex h-screen w-full items-center justify-center px-6">
-          <div className="w-full max-w-[380px] bg-white p-8 text-center text-[#1a1512] shadow-2xl">
-            <p className="mx-auto max-w-[240px] text-[13px] leading-snug text-[#6b6560]">{item.category}</p>
-            <p className="mt-6 font-display text-4xl tracking-wide sm:text-5xl">{item.name}</p>
-            <p className="mt-1 text-sm text-[#8a827b]">{item.subtitle}</p>
-            <p className="mt-5 text-[13px] uppercase tracking-[0.15em] text-[#8a827b]">{links}</p>
-            <div className="mx-auto mt-6 aspect-[4/3] w-full max-w-[300px]" style={{ background: cardImg[i % cardImg.length] }} />
+          <div className="flex w-full max-w-[400px] flex-col items-center bg-white px-8 py-10 text-center text-[#1a1512] shadow-2xl">
+            <p className="mx-auto max-w-[260px] text-[13px] leading-snug text-[#4a453f]">{item.category}</p>
+            <p className="mt-8 font-display text-5xl leading-none tracking-tight sm:text-[56px]">{item.name}</p>
+            <p className="mt-7 text-[14px] lowercase tracking-wide text-[#6b6560]">{links}</p>
+            <div className="mt-8 aspect-[4/3] w-full" style={{ background: cardImg[i % cardImg.length] }} />
           </div>
         </div>
       ))}

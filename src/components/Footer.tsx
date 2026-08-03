@@ -23,9 +23,9 @@ export default function Footer() {
         {/* Крупный бренд */}
         <a
           href="#top"
-          className="block font-display text-[15vw] font-600 uppercase leading-[0.9] tracking-[-0.01em] text-text lg:text-[180px]"
+          className="block font-display text-[19vw] leading-[0.9] tracking-tight text-text lg:text-[150px]"
         >
-          A&apos;LIS <span className="text-accent">BEAUTY</span>
+          a&apos;lis <span className="text-accent">beauty</span>
         </a>
 
         {/* Навигация через «/» */}

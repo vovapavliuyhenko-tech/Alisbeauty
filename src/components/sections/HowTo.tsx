@@ -26,26 +26,26 @@ export default function HowTo() {
             <div key={step.num} className="border-b border-line">
               <button
                 onClick={() => setOpen(isOpen ? -1 : i)}
-                className="group flex w-full items-center gap-5 py-7 text-left sm:gap-8 sm:py-8"
+                className="group flex w-full items-center gap-6 py-7 text-left sm:gap-10 sm:py-8"
                 aria-expanded={isOpen}
               >
                 <span
-                  className={`font-display text-3xl tabular-nums transition-colors sm:text-4xl ${
+                  className={`w-12 shrink-0 text-[15px] tabular-nums transition-colors ${
                     isOpen ? 'text-accent' : 'text-muted'
                   }`}
                 >
-                  {step.num}
+                  ({step.num})
                 </span>
                 <span
-                  className={`flex-1 font-display text-2xl uppercase tracking-wide transition-colors sm:text-3xl ${
-                    isOpen ? 'text-text' : 'text-text/80 group-hover:text-text'
+                  className={`flex-1 text-lg tracking-tight transition-colors sm:text-xl ${
+                    isOpen ? 'text-text' : 'text-text/85 group-hover:text-text'
                   }`}
                 >
                   {step.title}
                 </span>
                 <Plus
-                  size={26}
-                  strokeWidth={1.5}
+                  size={24}
+                  strokeWidth={1.25}
                   className={`shrink-0 transition-transform duration-300 ${
                     isOpen ? 'rotate-45 text-accent' : 'text-muted group-hover:text-text'
                   }`}
@@ -60,7 +60,7 @@ export default function HowTo() {
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="max-w-2xl pb-8 pl-[calc(2rem+2.5rem)] text-muted sm:text-[17px]">
+                    <p className="max-w-2xl pb-8 pl-[4.5rem] text-muted sm:pl-[5.5rem] sm:text-[17px]">
                       {step.text}
                     </p>
                   </motion.div>

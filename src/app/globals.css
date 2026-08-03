@@ -80,15 +80,16 @@ html.lenis body {
   outline-offset: 2px;
 }
 
-/* Заголовки — узкий конденсед-гротеск (Oswald), как крупная типографика на референсе */
+/* Заголовки — чистый гротеск Inter, как лейблы «(about me)» на референсе.
+   Крупные брендовые/проектные слова получают serif через класс .font-display. */
 h1, h2, h3, h4 {
-  font-family: var(--font-display), 'Oswald', system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: 0;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
 }
 
-/* Элегантный serif-акцент курсивом (как Times New Roman на референсе) */
-.font-serif-accent {
-  font-family: 'Times New Roman', Georgia, serif;
+/* Изящный высококонтрастный serif (Didone) — для брендовых слов «A'LIS», названий проектов */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
 }

@@ -13,7 +13,7 @@ function PriceTable({ title, rows }: { title: string; rows: Row[] }) {
   return (
     <Reveal>
       <div className="h-full border border-line bg-surface p-8 transition-colors hover:border-accent/60">
-        <h3 className="mb-6 font-display text-2xl uppercase tracking-wide text-accent">{title}</h3>
+        <h3 className="mb-6 text-xl font-medium tracking-tight text-accent">{title}</h3>
         <ul>
           {rows.map((row, i) => (
             <li
@@ -21,7 +21,7 @@ function PriceTable({ title, rows }: { title: string; rows: Row[] }) {
               className="flex items-baseline justify-between gap-6 border-b border-line py-3.5 last:border-0"
             >
               <span className="text-text/85">{row.name}</span>
-              <span className="whitespace-nowrap font-display text-lg tracking-wide text-accent-2">{row.price}</span>
+              <span className="whitespace-nowrap text-[15px] font-medium tracking-tight text-accent-2">{row.price}</span>
             </li>
           ))}
         </ul>

@@ -1,18 +1,18 @@
-// Шрифты в одном месте. Дизайн как на референсе resayme.ru:
-//  - крупные заголовки: узкий «конденсед» гротеск (аналог Thunder) — Oswald (есть кириллица)
-//  - интерфейс/текст: Inter
-//  - элегантные акценты курсивом: serif (Times/Georgia стек, задаётся в globals.css)
-import { Oswald, Inter } from 'next/font/google';
+// Шрифты как на референсе resayme.ru:
+//  - основной текст, интерфейс, лейблы «(about me)» — Inter (чистый гротеск)
+//  - крупные брендовые/проектные слова («resayme», «bergammo») — изящный Didone-serif.
+//    Берём Playfair Display (высокий контраст, есть кириллица).
+import { Inter, Playfair_Display } from 'next/font/google';
 
-// Заголовки — узкий конденсед-гротеск, аналог Thunder на референсе
-export const fontDisplay = Oswald({
+// Крупные брендовые слова — высококонтрастный serif (Didone), как «bergammo» на референсе
+export const fontDisplay = Playfair_Display({
   subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-display',
   display: 'swap',
 });
 
-// Интерфейс/текст — Inter, как на референсе
+// Интерфейс/текст/заголовки-лейблы — Inter, как на референсе
 export const fontBody = Inter({
   subsets: ['latin', 'cyrillic'],
   weight: ['300', '400', '500', '600'],

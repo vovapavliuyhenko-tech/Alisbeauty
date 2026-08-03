@@ -2,29 +2,23 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { openBookModal } from '@/components/BookModal';
-import { site } from '@/config/site';
-import { trackGoal } from '@/lib/metrika';
 
-// Фоновое видео/градиент под тёмной вуалью — как крупный визуал героя на референсе.
-function HeroMedia() {
+// Фон героя: одно фото зеркалом слева/справа (ч-б, редакционно), как на референсе.
+// Пока реальные ролики не добавлены — светлый нейтральный градиент-плейсхолдер.
+function MirrorMedia() {
   return (
-    <div className="absolute inset-0">
-      <div className="grid h-full w-full grid-cols-2">
-        <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#2c2622,#3a2f28)' }}>
-          <video className="h-full w-full object-cover opacity-70" autoPlay muted loop playsInline preload="auto">
-            <source src="/videos/hero-left.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#3a2f28,#221d1a)' }}>
-          <video className="h-full w-full object-cover opacity-70" autoPlay muted loop playsInline preload="auto">
-            <source src="/videos/hero-right.mp4" type="video/mp4" />
-          </video>
-        </div>
+    <div className="absolute inset-0 grid grid-cols-2">
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#dad7d2] to-[#c3bfb9]">
+        <video className="h-full w-full object-cover grayscale" autoPlay muted loop playsInline preload="auto">
+          <source src="/videos/hero-left.mp4" type="video/mp4" />
+        </video>
       </div>
-      {/* Тёмная вуаль в цвет фона — визуал утоплен, читается крупная типографика */}
-      <div className="absolute inset-0 bg-bg/70" />
-      <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" />
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#dad7d2] to-[#c3bfb9]">
+        {/* Зеркальная половина */}
+        <video className="h-full w-full -scale-x-100 object-cover grayscale" autoPlay muted loop playsInline preload="auto">
+          <source src="/videos/hero-right.mp4" type="video/mp4" />
+        </video>
+      </div>
     </div>
   );
 }
@@ -35,72 +29,33 @@ export default function Hero() {
   const t = useTranslations('hero');
 
   return (
-    <section className="relative flex min-h-svh w-full flex-col justify-end overflow-hidden pb-[6vh] pt-28">
-      <HeroMedia />
+    <section className="relative flex min-h-svh w-full items-center justify-center overflow-hidden">
+      <MirrorMedia />
 
-      <div className="relative mx-auto w-[94%] max-w-content">
-        {/* Верхняя строка-эйброу */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease }}
-          className="mb-6 flex items-center gap-3 text-[12px] uppercase tracking-[0.28em] text-muted"
-        >
-          <span className="h-px w-10 bg-accent" />
-          {t('eyebrow')} · Новороссийск
-        </motion.div>
+      {/* Центральная белая карточка */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease }}
+        className="relative z-10 flex h-[74vh] max-h-[720px] w-[86%] max-w-[440px] flex-col justify-between bg-white px-8 py-12 text-center text-[#17191a] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)]"
+      >
+        {/* Верхний тэглайн */}
+        <p className="mx-auto max-w-[17rem] text-[13px] leading-snug text-[#17191a]">
+          {t('cardTop')}
+        </p>
 
-        {/* Крупный конденсед-заголовок с serif-акцентом */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.08, ease }}
-          className="max-w-[16ch] font-display text-[13vw] font-500 uppercase leading-[0.92] tracking-[-0.01em] text-text sm:text-[12vw] lg:text-[130px]"
-        >
-          {t('title')}
-        </motion.h1>
+        {/* Крупное брендовое имя — Didone serif */}
+        <div className="flex flex-1 items-center justify-center">
+          <span className="font-display text-[64px] font-500 leading-none tracking-tight text-[#17191a] sm:text-[76px]">
+            A&apos;LIS
+          </span>
+        </div>
 
-        {/* Описание */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 0.35 }}
-          className="mt-7 max-w-[48ch] text-[15px] leading-relaxed text-muted sm:text-[16px]"
-        >
-          {t('subtitle')}
-        </motion.p>
-
-        {/* Ряд действий */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5, ease }}
-          className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 text-[14px]"
-        >
-          <a
-            href="#price"
-            onClick={() => trackGoal('hero_services')}
-            className="group inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 font-medium text-bg transition hover:bg-accent-2"
-          >
-            {t('ctaServices')}
-            <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-          <button
-            onClick={() => {
-              trackGoal('book_open');
-              openBookModal();
-            }}
-            className="rounded-full border border-line px-8 py-3.5 text-text transition hover:border-accent hover:text-accent"
-          >
-            {t('cta')}
-          </button>
-          <div className="ml-1 flex items-center gap-3 text-muted">
-            <a href={site.instagramSalon} target="_blank" rel="noopener noreferrer" className="transition hover:text-text">inst*</a>
-            <span className="text-muted/40">/</span>
-            <a href={site.telegram} target="_blank" rel="noopener noreferrer" className="transition hover:text-text">tg</a>
-          </div>
-        </motion.div>
-      </div>
+        {/* Нижний подзаголовок */}
+        <p className="mx-auto max-w-[18rem] text-[13px] leading-snug text-[#4a4a4a]">
+          {t('cardSub')}
+        </p>
+      </motion.div>
     </section>
   );
 }
