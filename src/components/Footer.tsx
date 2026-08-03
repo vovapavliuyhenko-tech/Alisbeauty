@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Send, MessageCircle, Instagram, Mail } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { site, navItems } from '@/config/site';
 
@@ -11,46 +10,68 @@ export default function Footer() {
   const tc = useTranslations('contacts');
   const year = new Date().getFullYear();
 
+  const social = [
+    { label: 'inst*', href: site.instagramSalon },
+    { label: 'tg', href: site.telegram },
+    { label: 'wa', href: site.whatsapp },
+    { label: 'e-mail', href: `mailto:${site.email}` },
+  ];
+
   return (
-    <footer className="border-t border-line bg-surface py-16">
-      <div className="mx-auto grid w-[92%] max-w-content gap-10 md:grid-cols-3">
-        <div>
-          <a href="#top" className="font-display text-2xl">
-            A&apos;LIS <span className="text-accent">BEAUTY</span>
-          </a>
-          <p className="mt-4 max-w-xs text-sm text-muted">{tf('tagline')}</p>
-          <div className="mt-6 flex gap-4">
-            <a href={site.telegram} aria-label="Telegram" target="_blank" rel="noopener noreferrer" className="text-muted transition hover:text-accent"><Send size={20} /></a>
-            <a href={site.whatsapp} aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" className="text-muted transition hover:text-accent"><MessageCircle size={20} /></a>
-            <a href={site.instagramSalon} aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-muted transition hover:text-accent"><Instagram size={20} /></a>
-            <a href={`mailto:${site.email}`} aria-label="Email" className="text-muted transition hover:text-accent"><Mail size={20} /></a>
+    <footer className="border-t border-line bg-bg pt-16 pb-8">
+      <div className="mx-auto w-[92%] max-w-content">
+        {/* Крупный бренд */}
+        <a
+          href="#top"
+          className="block font-display text-[15vw] font-600 uppercase leading-[0.9] tracking-[-0.01em] text-text lg:text-[180px]"
+        >
+          A&apos;LIS <span className="text-accent">BEAUTY</span>
+        </a>
+
+        {/* Навигация через «/» */}
+        <nav className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-[15px]">
+          {navItems.map((id, i) => (
+            <span key={id} className="flex items-center gap-3">
+              {i > 0 && <span className="text-muted/40">/</span>}
+              <a href={`#${id}`} className="lowercase text-muted transition hover:text-text">
+                {t(id)}
+              </a>
+            </span>
+          ))}
+        </nav>
+
+        {/* Соцсети + реквизиты */}
+        <div className="mt-12 grid gap-10 border-t border-line pt-10 md:grid-cols-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[15px]">
+            {social.map((s, i) => (
+              <span key={s.label} className="flex items-center gap-3">
+                {i > 0 && <span className="text-muted/40">/</span>}
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted transition hover:text-accent"
+                >
+                  {s.label}
+                </a>
+              </span>
+            ))}
+          </div>
+          <div className="text-[13px] leading-relaxed text-muted md:text-right">
+            <p>{tc('ip')}</p>
+            <p>{tc('ogrnip')} · {tc('inn')}</p>
+            <p className="mt-1">{tc('address')} · {site.email}</p>
           </div>
         </div>
 
-        <div>
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-accent">{tf('menu')}</p>
-          <ul className="grid grid-cols-2 gap-2 text-sm">
-            {navItems.map((id) => (
-              <li key={id}>
-                <a href={`#${id}`} className="text-muted transition hover:text-text">{t(id)}</a>
-              </li>
-            ))}
-          </ul>
+        {/* Низ */}
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 text-[13px] text-muted">
+          <span>© {year} A&apos;LIS BEAUTY. {tf('copyright')}</span>
+          <div className="flex items-center gap-5">
+            <Link href="/politic" className="transition hover:text-text">{tc('policy')}</Link>
+            <a href="#top" className="transition hover:text-accent">наверх ⭡</a>
+          </div>
         </div>
-
-        <div>
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-accent">{tc('requisites')}</p>
-          <p className="text-sm text-muted">{tc('ip')}</p>
-          <p className="text-sm text-muted">{tc('ogrnip')}</p>
-          <p className="text-sm text-muted">{tc('inn')}</p>
-          <p className="mt-2 text-sm text-muted">{tc('address')}</p>
-          <Link href="/politic" className="mt-4 inline-block text-sm text-accent underline-offset-4 hover:underline">
-            {tc('policy')}
-          </Link>
-        </div>
-      </div>
-      <div className="mx-auto mt-12 w-[92%] max-w-content border-t border-line pt-6 text-xs text-muted">
-        © {year} A&apos;LIS BEAUTY. {tf('copyright')}
       </div>
     </footer>
   );
