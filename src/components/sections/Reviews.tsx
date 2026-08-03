@@ -25,7 +25,7 @@ export default function Reviews() {
         <div className="flex gap-6">
           {items.map((r, i) => (
             <div key={i} className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]">
-              <div className="flex h-full flex-col rounded-2xl border border-line bg-bg/40 p-8">
+              <div className="flex h-full flex-col border border-line bg-bg/40 p-8">
                 <Quote className="text-accent" size={28} />
                 <p className="mt-4 flex-1 text-lg leading-relaxed">{r.text}</p>
                 <div className="mt-6">

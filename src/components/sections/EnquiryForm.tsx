@@ -10,7 +10,7 @@ type Tab = 'russia' | 'abroad';
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
 const inputCls =
-  'w-full rounded-lg border border-line bg-bg px-4 py-3 text-text outline-none transition focus:border-accent';
+  'w-full border-0 border-b border-line bg-transparent px-0 py-3 text-text outline-none transition focus:border-accent [color-scheme:dark]';
 
 export default function EnquiryForm() {
   const t = useTranslations('form');
@@ -92,7 +92,7 @@ export default function EnquiryForm() {
           </div>
 
           {status === 'success' ? (
-            <div className="rounded-2xl border border-accent/40 bg-bg/40 p-10 text-center">
+            <div className="border border-accent/40 bg-bg/40 p-10 text-center">
               <p className="text-lg text-accent">{t('success')}</p>
             </div>
           ) : (

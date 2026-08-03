@@ -12,7 +12,7 @@ export default function Founder() {
       <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
         <Reveal>
           {/* Плейсхолдер под фото основателя */}
-          <div className="aspect-[3/4] w-full rounded-2xl border border-line bg-gradient-to-br from-accent/30 to-surface" />
+          <div className="aspect-[3/4] w-full border border-line bg-gradient-to-br from-accent/30 to-surface" />
         </Reveal>
         <Reveal delay={0.1}>
           <div>

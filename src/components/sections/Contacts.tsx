@@ -56,7 +56,7 @@ export default function Contacts() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="h-[420px] overflow-hidden rounded-2xl border border-line">
+          <div className="h-[420px] overflow-hidden border border-line">
             <iframe
               src={site.mapEmbed}
               className="h-full w-full"

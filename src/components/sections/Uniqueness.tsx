@@ -20,7 +20,7 @@ export default function Uniqueness() {
         {items.map((item) => (
           <StaggerItem
             key={item.num}
-            className="group rounded-2xl border border-line bg-bg/40 p-8 transition hover:border-accent"
+            className="group border border-line bg-bg/40 p-8 transition hover:border-accent"
           >
             <span className="font-display text-5xl text-accent/40 transition group-hover:text-accent">
               {item.num}

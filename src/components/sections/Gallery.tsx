@@ -61,7 +61,7 @@ export default function Gallery() {
             key={item.id}
             layout
             onClick={() => setLightbox(idx)}
-            className="group relative mb-4 block w-full overflow-hidden rounded-xl border border-line"
+            className="group relative mb-4 block w-full overflow-hidden border border-line"
             style={{ aspectRatio: item.ratio || '3/4' }}
           >
             {item.src ? (
