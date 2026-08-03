@@ -37,7 +37,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease }}
-        className="relative z-10 flex h-[74vh] max-h-[720px] w-[86%] max-w-[440px] flex-col justify-between bg-white px-8 py-12 text-center text-[#17191a] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)]"
+        className="relative z-10 flex aspect-[337/443] max-h-[80vh] w-[88%] max-w-[338px] flex-col justify-between bg-white px-7 py-9 text-center text-[#17191a] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)]"
       >
         {/* Верхний тэглайн */}
         <p className="mx-auto max-w-[17rem] text-[13px] leading-snug text-[#17191a]">
@@ -46,7 +46,7 @@ export default function Hero() {
 
         {/* Крупное брендовое имя — Didone serif */}
         <div className="flex flex-1 items-center justify-center">
-          <span className="font-display text-[64px] font-500 leading-none tracking-tight text-[#17191a] sm:text-[76px]">
+          <span className="font-display text-[52px] font-500 leading-none tracking-tight text-[#17191a] sm:text-[58px]">
             A&apos;LIS
           </span>
         </div>
