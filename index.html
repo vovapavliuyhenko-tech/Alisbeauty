@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A'LIS — премиальный салон красоты в Новороссийске</title>
+  <meta name="description" content="Премиальный салон красоты в Новороссийске: маникюр, брови, макияж, причёски, образ невесты. Онлайн-запись за минуту. Результат, за который не стыдно." />
+  <meta name="theme-color" content="#121212" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="A'LIS — премиальный салон красоты в Новороссийске" />
+  <meta property="og:description" content="Маникюр, брови, макияж, причёски, образ невесты. Онлайн-запись за минуту." />
+  <meta property="og:image" content="/assets/img/og.jpg" />
+  <meta property="og:locale" content="ru_RU" />
+
+  <!-- Favicon (плейсхолдер — замените на свой) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23121212'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+
+  <!-- Шрифты: Inter + Oswald (fallback под Thunder) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#hero" data-i18n="a11y.skip">К основному содержимому</a>
+
+  <!-- ================= ШАПКА ================= -->
+  <header class="header" id="site-header">
+    <div class="container header__inner">
+      <a href="#hero" class="header__logo" aria-label="A'LIS — на главную">a&apos;lis</a>
+
+      <nav class="header__nav" aria-label="Основное меню">
+        <a href="#services" data-i18n="nav.services">Услуги</a>
+        <a href="#price" data-i18n="nav.price">Прайс</a>
+        <a href="#about" data-i18n="nav.about">О нас</a>
+        <a href="#cases" data-i18n="nav.cases">Кейсы</a>
+        <a href="#reviews" data-i18n="nav.reviews">Отзывы</a>
+        <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <div class="lang" role="group" aria-label="Язык / Language">
+          <button class="lang__btn is-active" data-lang="ru" type="button">RU</button>
+          <span class="lang__sep">/</span>
+          <button class="lang__btn" data-lang="en" type="button">EN</button>
+        </div>
+        <button class="btn btn--solid header__cta" data-booking type="button">
+          <span data-i18n="nav.book">Записаться</span>
+        </button>
+        <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" type="button">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav>
+      <a href="#services" data-i18n="nav.services">Услуги</a>
+      <a href="#price" data-i18n="nav.price">Прайс</a>
+      <a href="#about" data-i18n="nav.about">О нас</a>
+      <a href="#cases" data-i18n="nav.cases">Кейсы</a>
+      <a href="#reviews" data-i18n="nav.reviews">Отзывы</a>
+      <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <button class="btn btn--solid" data-booking type="button"><span data-i18n="nav.book">Записаться</span></button>
+  </div>
+
+  <main>
+    <!-- ================= 1. HERO ================= -->
+    <section class="hero section--dark" id="hero">
+      <div class="hero__blob" data-speed="-1" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Салон красоты · Новороссийск</p>
+        <h1 class="hero__title" data-i18n="hero.title">Безупречно — от маникюра до дня свадьбы</h1>
+        <p class="hero__sub lead" data-i18n="hero.sub">Премиальный салон в Новороссийске. Результат, за который не стыдно.</p>
+        <div class="hero__actions">
+          <button class="btn btn--solid" data-booking type="button">
+            <span data-i18n="hero.ctaBook">Записаться онлайн</span><i class="arrow">→</i>
+          </button>
+          <a class="btn btn--ghost btn--ghost-light" href="#services">
+            <span data-i18n="hero.ctaServices">Смотреть услуги</span>
+          </a>
+        </div>
+        <p class="hero__trust" data-i18n="hero.trust">500+ клиентов · 5,0 на Яндексе · мастера от 5 лет</p>
+      </div>
+    </section>
+
+    <!-- ================= 2. УСЛУГИ ================= -->
+    <section class="section section--light" id="services">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow" data-i18n="services.eyebrow">Услуги</p>
+          <h2 class="section__title" data-i18n="services.title">Одно место — весь ваш образ</h2>
+          <p class="section__sub" data-i18n="services.sub">Не эксперименты. Результат, который видно.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card" data-reveal data-speed="0.4">
+            <h3 class="card__title"><span data-i18n="services.s1.name">Маникюр и педикюр.</span></h3>
+            <p class="card__text" data-i18n="services.s1.text">Держится 3–4 недели. Стерильно.</p>
+            <div class="card__foot">
+              <span class="price" data-i18n="services.s1.price">от [X] ₽</span>
+              <button class="btn btn--ghost" data-booking data-service="manicure" type="button"><span data-i18n="nav.book">Записаться</span><i class="arrow">→</i></button>
+            </div>
+          </article>
+
+          <article class="card" data-reveal data-speed="0.6">
+            <h3 class="card__title"><span data-i18n="services.s2.name">Брови и ресницы.</span></h3>
+            <p class="card__text" data-i18n="services.s2.text">Идеальный взгляд без макияжа.</p>
+            <div class="card__foot">
+              <span class="price" data-i18n="services.s2.price">от [X] ₽</span>
+              <button class="btn btn--ghost" data-booking data-service="brows" type="button"><span data-i18n="nav.book">Записаться</span><i class="arrow">→</i></button>
+            </div>
+          </article>
+
+          <article class="card" data-reveal data-speed="0.4">
+            <h3 class="card__title"><span data-i18n="services.s3.name">Макияж.</span></h3>
+            <p class="card__text" data-i18n="services.s3.text">Подчёркиваем вас, не прячем.</p>
+            <div class="card__foot">
+              <span class="price" data-i18n="services.s3.price">от [X] ₽</span>
+              <button class="btn btn--ghost" data-booking data-service="makeup" type="button"><span data-i18n="nav.book">Записаться</span><i class="arrow">→</i></button>
+            </div>
+          </article>
+
+          <article class="card" data-reveal data-speed="0.6">
+            <h3 class="card__title"><span data-i18n="services.s4.name">Причёски и укладки.</span></h3>
+            <p class="card__text" data-i18n="services.s4.text">Держится до последнего танца.</p>
+            <div class="card__foot">
+              <span class="price" data-i18n="services.s4.price">от [X] ₽</span>
+              <button class="btn btn--ghost" data-booking data-service="hair" type="button"><span data-i18n="nav.book">Записаться</span><i class="arrow">→</i></button>
+            </div>
+          </article>
+
+          <article class="card card--wide" data-reveal data-speed="0.5">
+            <h3 class="card__title"><span data-i18n="services.s5.name">Образ невесты.</span></h3>
+            <p class="card__text" data-i18n="services.s5.text">Макияж, причёска, репетиция — под ключ.</p>
+            <div class="card__foot">
+              <span class="price" data-i18n="services.s5.price">от [X] ₽</span>
+              <button class="btn btn--ghost" data-booking data-service="bride" type="button"><span data-i18n="nav.book">Записаться</span><i class="arrow">→</i></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. ПРАЙС ================= -->
+    <section class="section section--dark" id="price">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow" data-i18n="price.eyebrow">Прайс</p>
+          <h2 class="section__title" data-i18n="price.title">Цены известны заранее</h2>
+          <p class="section__sub" data-i18n="price.sub">Никаких «доплатите на месте».</p>
+        </header>
+
+        <div class="accordion" id="price-accordion">
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__num">(01)</span>
+              <span class="accordion__label" data-i18n="price.c1.title">Маникюр и педикюр</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body">
+              <ul class="pricelist">
+                <li><span data-i18n="price.c1.r1">Маникюр с покрытием</span><b class="price" data-i18n="price.c1.p1">[X] ₽</b></li>
+                <li><span data-i18n="price.c1.r2">Педикюр с покрытием</span><b class="price" data-i18n="price.c1.p2">[X] ₽</b></li>
+                <li><span data-i18n="price.c1.r3">Снятие / укрепление</span><b class="price" data-i18n="price.c1.p3">[X] ₽</b></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__num">(02)</span>
+              <span class="accordion__label" data-i18n="price.c2.title">Брови и ресницы</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body">
+              <ul class="pricelist">
+                <li><span data-i18n="price.c2.r1">Оформление и окрашивание бровей</span><b class="price" data-i18n="price.c2.p1">[X] ₽</b></li>
+                <li><span data-i18n="price.c2.r2">Ламинирование ресниц</span><b class="price" data-i18n="price.c2.p2">[X] ₽</b></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__num">(03)</span>
+              <span class="accordion__label" data-i18n="price.c3.title">Макияж и причёски</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body">
+              <ul class="pricelist">
+                <li><span data-i18n="price.c3.r1">Дневной / вечерний макияж</span><b class="price" data-i18n="price.c3.p1">[X] ₽</b></li>
+                <li><span data-i18n="price.c3.r2">Причёска / укладка</span><b class="price" data-i18n="price.c3.p2">[X] ₽</b></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__num">(04)</span>
+              <span class="accordion__label" data-i18n="price.c4.title">Образ невесты</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body">
+              <ul class="pricelist">
+                <li><span data-i18n="price.c4.r1">Образ под ключ (макияж + причёска)</span><b class="price" data-i18n="price.c4.p1">[X] ₽</b></li>
+                <li><span data-i18n="price.c4.r2">Репетиция образа</span><b class="price" data-i18n="price.c4.p2">[X] ₽</b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="section__cta" data-reveal>
+          <button class="btn btn--solid" data-booking type="button"><span data-i18n="nav.book">Записаться</span><i class="arrow">→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. О НАС ================= -->
+    <section class="section section--light" id="about">
+      <div class="container about__grid">
+        <div class="about__text" data-reveal data-speed="0.5">
+          <p class="eyebrow" data-i18n="about.eyebrow">О нас</p>
+          <h2 class="section__title" data-i18n="about.title">Салон, куда возвращаются</h2>
+          <p class="lead" data-i18n="about.text">[N] лет. [N]+ клиентов. Ноль конвейера. Каждому — время, внимание и результат. Стерильность, премиум-материалы, мастера, которые слушают. Доверьте внешность тем, кто знает, что делает.</p>
+        </div>
+        <div class="stats" data-reveal data-speed="0.7">
+          <div class="stat"><span class="stat__num" data-count="7">0</span><span class="stat__plus">+</span><p class="stat__label" data-i18n="about.st1">лет</p></div>
+          <div class="stat"><span class="stat__num" data-count="500">0</span><span class="stat__plus">+</span><p class="stat__label" data-i18n="about.st2">клиентов</p></div>
+          <div class="stat"><span class="stat__num" data-count="8">0</span><span class="stat__plus">+</span><p class="stat__label" data-i18n="about.st3">мастеров</p></div>
+          <div class="stat"><span class="stat__num" data-count="5" data-decimal="0">0</span><p class="stat__label" data-i18n="about.st4">рейтинг</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. КЕЙСЫ ================= -->
+    <section class="section section--dark" id="cases">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow" data-i18n="cases.eyebrow">Наши работы</p>
+          <h2 class="section__title" data-i18n="cases.title">Смотрите на результат</h2>
+          <p class="section__sub" data-i18n="cases.sub">Реальные работы, без тяжёлой ретуши. Так будет и у вас.</p>
+        </header>
+
+        <!-- Слайдер до/после -->
+        <div class="ba" data-reveal aria-label="До и после">
+          <div class="ba__img ba__img--after"></div>
+          <div class="ba__img ba__img--before" id="ba-before"></div>
+          <input class="ba__range" id="ba-range" type="range" min="0" max="100" value="50" aria-label="До / после" />
+          <div class="ba__handle" id="ba-handle" aria-hidden="true"><span>‹ ›</span></div>
+          <span class="ba__tag ba__tag--l" data-i18n="cases.before">До</span>
+          <span class="ba__tag ba__tag--r" data-i18n="cases.after">После</span>
+        </div>
+
+        <!-- Галерея -->
+        <div class="gallery">
+          <button class="gallery__item" data-lightbox data-speed="0.5" style="--i:1" type="button" aria-label="Открыть фото"></button>
+          <button class="gallery__item" data-lightbox data-speed="0.7" style="--i:2" type="button" aria-label="Открыть фото"></button>
+          <button class="gallery__item" data-lightbox data-speed="0.4" style="--i:3" type="button" aria-label="Открыть фото"></button>
+          <button class="gallery__item" data-lightbox data-speed="0.6" style="--i:4" type="button" aria-label="Открыть фото"></button>
+        </div>
+
+        <div class="section__cta" data-reveal>
+          <button class="btn btn--solid" data-booking type="button"><span data-i18n="cases.cta">Хочу так же</span><i class="arrow">→</i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6. ЭТАПЫ ================= -->
+    <section class="section section--light" id="steps">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow" data-i18n="steps.eyebrow">Как мы работаем</p>
+          <h2 class="section__title" data-i18n="steps.title">Просто и без нервов</h2>
+        </header>
+        <ol class="steps">
+          <li class="step" data-reveal data-speed="0.3"><span class="step__num">01</span><h3 class="step__title" data-i18n="steps.s1.t">Заявка</h3><p data-i18n="steps.s1.d">Ответ за 15 минут.</p></li>
+          <li class="step" data-reveal data-speed="0.45"><span class="step__num">02</span><h3 class="step__title" data-i18n="steps.s2.t">Консультация</h3><p data-i18n="steps.s2.d">Подберём услугу под вас.</p></li>
+          <li class="step" data-reveal data-speed="0.6"><span class="step__num">03</span><h3 class="step__title" data-i18n="steps.s3.t">Запись</h3><p data-i18n="steps.s3.d">Удобное время, без очередей.</p></li>
+          <li class="step" data-reveal data-speed="0.45"><span class="step__num">04</span><h3 class="step__title" data-i18n="steps.s4.t">Процедура</h3><p data-i18n="steps.s4.d">Вы отдыхаете, мастер работает.</p></li>
+          <li class="step" data-reveal data-speed="0.3"><span class="step__num">05</span><h3 class="step__title" data-i18n="steps.s5.t">Результат</h3><p data-i18n="steps.s5.d">Уходите с образом мечты.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= 7. ОТЗЫВЫ ================= -->
+    <section class="section section--light section--soft" id="reviews">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow" data-i18n="reviews.eyebrow">Отзывы</p>
+          <h2 class="section__title" data-i18n="reviews.title">Нам доверяют главное</h2>
+          <p class="section__sub" data-i18n="reviews.sub">5,0 на Яндексе и 2ГИС. Читайте сами.</p>
+        </header>
+        <div class="reviews">
+          <figure class="review" data-reveal data-speed="0.4">
+            <blockquote data-i18n="reviews.r1.text">Пришла на образ невесты — это была лучшая версия меня. Держалось весь день до последнего танца.</blockquote>
+            <figcaption><b data-i18n="reviews.r1.name">Анна</b><span data-i18n="reviews.r1.service">Образ невесты</span></figcaption>
+          </figure>
+          <figure class="review" data-reveal data-speed="0.6">
+            <blockquote data-i18n="reviews.r2.text">Хожу на маникюр только сюда. Стерильно, аккуратно, держится три недели минимум.</blockquote>
+            <figcaption><b data-i18n="reviews.r2.name">Мария</b><span data-i18n="reviews.r2.service">Маникюр</span></figcaption>
+          </figure>
+          <figure class="review" data-reveal data-speed="0.4">
+            <blockquote data-i18n="reviews.r3.text">Брови сделали идеально под лицо. Наконец без макияжа выгляжу собранно.</blockquote>
+            <figcaption><b data-i18n="reviews.r3.name">Ольга</b><span data-i18n="reviews.r3.service">Брови</span></figcaption>
+          </figure>
+        </div>
+        <div class="section__cta" data-reveal>
+          <a class="btn btn--ghost" href="[ССЫЛКА_НА_ОТЗЫВЫ]" target="_blank" rel="noopener" data-review-link>
+            <span data-i18n="reviews.cta">Оставить отзыв</span><i class="arrow">→</i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8. INSTAGRAM ================= -->
+    <section class="section section--dark" id="instagram">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow" data-i18n="ig.eyebrow">Мы в Instagram</p>
+          <h2 class="section__title" data-i18n="ig.title">Красота в прямом эфире</h2>
+          <p class="section__sub" data-i18n="ig.sub">Свежие работы каждый день.</p>
+        </header>
+        <!-- Запасная сетка (при подключении Behold заменить содержимое #ig-feed) -->
+        <div class="ig-grid" id="ig-feed">
+          <a class="ig-tile" href="[INSTAGRAM_URL]" target="_blank" rel="noopener" style="--i:1" aria-label="Instagram"></a>
+          <a class="ig-tile" href="[INSTAGRAM_URL]" target="_blank" rel="noopener" style="--i:2" aria-label="Instagram"></a>
+          <a class="ig-tile" href="[INSTAGRAM_URL]" target="_blank" rel="noopener" style="--i:3" aria-label="Instagram"></a>
+          <a class="ig-tile" href="[INSTAGRAM_URL]" target="_blank" rel="noopener" style="--i:4" aria-label="Instagram"></a>
+          <a class="ig-tile" href="[INSTAGRAM_URL]" target="_blank" rel="noopener" style="--i:5" aria-label="Instagram"></a>
+          <a class="ig-tile" href="[INSTAGRAM_URL]" target="_blank" rel="noopener" style="--i:6" aria-label="Instagram"></a>
+        </div>
+        <div class="section__cta" data-reveal>
+          <a class="btn btn--solid" href="[INSTAGRAM_URL]" target="_blank" rel="noopener">
+            <span data-i18n="ig.cta">Подписаться @alis.beauty</span><i class="arrow">→</i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 9. FAQ ================= -->
+    <section class="section section--light" id="faq">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow" data-i18n="faq.eyebrow">Вопросы</p>
+          <h2 class="section__title" data-i18n="faq.title">Коротко о важном</h2>
+        </header>
+        <div class="accordion" id="faq-accordion">
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__label" data-i18n="faq.q1">Как записаться?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body"><p data-i18n="faq.a1">Онлайн за минуту или в WhatsApp. Подтвердим сразу.</p></div>
+          </div>
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__label" data-i18n="faq.q2">Перенести или отменить?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body"><p data-i18n="faq.a2">Да, за 24 часа.</p></div>
+          </div>
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__label" data-i18n="faq.q3">Выезд на дом или в отель?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body"><p data-i18n="faq.a3">Да, особенно для невест.</p></div>
+          </div>
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__label" data-i18n="faq.q4">Безопасно?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body"><p data-i18n="faq.a4">Стерильно, одноразовые материалы.</p></div>
+          </div>
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__label" data-i18n="faq.q5">Подготовка невесты?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body"><p data-i18n="faq.a5">[X] часов + репетиция заранее.</p></div>
+          </div>
+          <div class="accordion__item" data-reveal>
+            <button class="accordion__head" type="button" aria-expanded="false">
+              <span class="accordion__label" data-i18n="faq.q6">Оплата?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="accordion__body"><p data-i18n="faq.a6">Карта или наличные. Невестам — бронь по предоплате.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 10. ФОРМА ЗАПИСИ ================= -->
+    <section class="section section--dark" id="booking">
+      <div class="container booking__grid">
+        <header class="section__head booking__head" data-reveal>
+          <p class="eyebrow" data-i18n="form.eyebrow">Запись</p>
+          <h2 class="section__title" data-i18n="form.title">Запишитесь за минуту</h2>
+          <p class="section__sub" data-i18n="form.sub">Оставьте заявку — подберём время и мастера. На выходные и свадебный сезон места уходят вперёд.</p>
+        </header>
+
+        <form class="form" id="booking-form" novalidate data-reveal>
+          <!-- honeypot -->
+          <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <label class="field">
+            <span class="field__label" data-i18n="form.name">Имя</span>
+            <input type="text" name="name" required autocomplete="name" data-i18n-placeholder="form.namePh" placeholder="Как к вам обращаться" />
+          </label>
+          <label class="field">
+            <span class="field__label" data-i18n="form.phone">Телефон</span>
+            <input type="tel" name="phone" required inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" />
+          </label>
+          <label class="field">
+            <span class="field__label" data-i18n="form.service">Услуга</span>
+            <select name="service">
+              <option value="manicure" data-i18n="form.opt.manicure">Маникюр и педикюр</option>
+              <option value="brows" data-i18n="form.opt.brows">Брови и ресницы</option>
+              <option value="makeup" data-i18n="form.opt.makeup">Макияж</option>
+              <option value="hair" data-i18n="form.opt.hair">Причёски и укладки</option>
+              <option value="bride" data-i18n="form.opt.bride">Образ невесты</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field__label" data-i18n="form.date">Желаемая дата</span>
+            <input type="date" name="date" />
+          </label>
+          <label class="field field--full">
+            <span class="field__label" data-i18n="form.comment">Комментарий</span>
+            <textarea name="comment" rows="3" data-i18n-placeholder="form.commentPh" placeholder="Пожелания, событие, дата"></textarea>
+          </label>
+
+          <div class="form__actions field--full">
+            <button class="btn btn--solid" type="submit"><span data-i18n="form.submit">Записаться</span><i class="arrow">→</i></button>
+            <a class="btn btn--ghost btn--ghost-light" id="wa-link" href="https://wa.me/[НОМЕР]" target="_blank" rel="noopener">
+              <span data-i18n="form.whatsapp">Написать в WhatsApp</span>
+            </a>
+          </div>
+          <p class="form__note field--full" data-i18n="form.note">Перезвоним за 15 минут. Без спама.</p>
+          <p class="form__status field--full" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= 11. ПОДВАЛ ================= -->
+  <footer class="footer" id="contacts">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#hero" class="footer__logo">a&apos;lis</a>
+        <p class="footer__tagline"><span data-i18n="footer.tagline">[НАЗВАНИЕ] — премиальный салон красоты в Новороссийске.</span></p>
+        <div class="footer__socials">
+          <a href="https://wa.me/[НОМЕР]" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="[TELEGRAM_URL]" target="_blank" rel="noopener">Telegram</a>
+          <a href="[INSTAGRAM_URL]" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__h" data-i18n="footer.contacts">Контакты</p>
+        <p data-i18n="footer.address">[адрес], Новороссийск</p>
+        <p data-i18n="footer.hours">Ежедневно [09:00–21:00]</p>
+        <a href="tel:+7__________" data-i18n="footer.phone">+7 [___] ___-__-__</a>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__h" data-i18n="footer.legal">Реквизиты</p>
+        <p data-i18n="footer.ip">[ИП ___]</p>
+        <p data-i18n="footer.inn">[ИНН ___]</p>
+        <p class="footer__copy">© <span data-year>2026</span> A&apos;LIS</p>
+      </div>
+
+      <div class="footer__map">
+        <!-- Замените src на встраивание вашей точки в Яндекс.Картах -->
+        <iframe title="Карта — салон на карте Новороссийска"
+          src="https://yandex.ru/map-widget/v1/?ll=37.769%2C44.723&z=13"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Плавающая кнопка -->
+  <div class="fab" id="fab" aria-hidden="true">
+    <button class="fab__btn fab__btn--book" data-booking type="button" aria-label="Записаться"><span data-i18n="nav.book">Записаться</span></button>
+    <a class="fab__btn fab__btn--wa" href="https://wa.me/[НОМЕР]" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+  </div>
+
+  <!-- Модалка записи (YClients) -->
+  <div class="modal" id="booking-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Онлайн-запись">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__box">
+      <button class="modal__close" data-close aria-label="Закрыть" type="button">✕</button>
+      <div class="modal__body" id="yclients-slot">
+        <!-- Вставьте сюда виджет YClients: <script src="https://w1204.yclients.com/widgetJS"></script> или iframe -->
+        <div class="modal__placeholder">
+          <p class="eyebrow" data-i18n="nav.book">Записаться</p>
+          <p data-i18n="modal.placeholder">Здесь откроется виджет онлайн-записи YClients. Подставьте ID компании/виджета в js/main.js (YCLIENTS_ID).</p>
+          <a class="btn btn--solid" href="https://wa.me/[НОМЕР]" target="_blank" rel="noopener"><span data-i18n="form.whatsapp">Написать в WhatsApp</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Лайтбокс -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+    <button class="lightbox__close" data-close aria-label="Закрыть" type="button">✕</button>
+    <div class="lightbox__img" id="lightbox-img"></div>
+  </div>
+
+  <!-- Cookie-баннер -->
+  <div class="cookie" id="cookie" aria-hidden="true">
+    <p data-i18n="cookie.text">Cookie — чтобы сайт был удобнее.</p>
+    <button class="btn btn--solid btn--sm" id="cookie-ok" type="button" data-i18n="cookie.ok">Ок</button>
+  </div>
+
+  <!-- Скрипты: Lenis + GSAP через CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script type="module" src="/js/i18n.js"></script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

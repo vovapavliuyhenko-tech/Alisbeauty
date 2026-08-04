@@ -1,11 +1,13 @@
-node_modules
-/.next
-/out
-/build
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Node (для локального serve / деплой-инструментов)
+node_modules/
+.vercel/
+
+# Env (токены Telegram и пр. — только в окружении, не в репозитории)
 .env
 .env.local
 .env*.local
-.DS_Store
-*.tsbuildinfo
-next-env.d.ts
-.vercel

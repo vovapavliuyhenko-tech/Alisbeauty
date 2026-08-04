@@ -1,58 +1,56 @@
-# A'LIS BEAUTY — сайт салона и beauty-консьерж-сервиса
+# A'LIS — лендинг премиального салона красоты (Новороссийск)
 
-Одностраничный сайт (Next.js App Router + TypeScript) с якорной навигацией, двумя языками (RU/EN), плавным скроллом, анимациями, формами-анкетами и галереей с лентой Instagram.
-
-## Стек
-Next.js 15 · TypeScript · Tailwind CSS · next-intl · Framer Motion · Lenis · embla-carousel · lucide-react. Хостинг — Vercel.
-
-## Запуск локально
-```bash
-npm install
-cp .env.example .env.local   # заполнить переменные (см. ниже)
-npm run dev                  # http://localhost:3000
-```
-Сборка: `npm run build` → `npm start`.
-
-## Переменные окружения (`.env.local`)
-Сайт работает и без них (формы/лента переходят в запасной режим), но для боевого режима заполните:
-
-| Переменная | Зачем |
-|---|---|
-| `RESEND_API_KEY` | Отправка заявок на email (сервис [Resend](https://resend.com)) |
-| `FORM_EMAIL_TO` | Куда слать заявки (по умолчанию alisbeautyclub@gmail.com) |
-| `FORM_EMAIL_FROM` | Отправитель (проверенный домен Resend) |
-| `TELEGRAM_BOT_TOKEN` | Токен бота от @BotFather — заявки в Telegram |
-| `TELEGRAM_CHAT_ID` | Куда слать заявки в Telegram |
-| `IG_ACCESS_TOKEN` | Long-lived токен Instagram Graph API (лента) |
-| `IG_USER_ID` | ID бизнес-аккаунта Instagram |
-| `NEXT_PUBLIC_YANDEX_METRIKA_ID` | Номер счётчика Яндекс.Метрики |
-| `TURNSTILE_SECRET_KEY` / `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Капча (опционально) |
-| `NEXT_PUBLIC_SITE_URL` | Базовый URL для sitemap/canonical |
-
-Если Telegram/email не заданы — форма примет заявку без падения (для боевого режима задайте хотя бы один канал). Если Instagram не настроен — вместо ленты показывается кнопка «Смотреть в Instagram».
-
-## Что и где менять (для заказчика)
-- **Цвета/токены:** `src/app/globals.css` (блок `:root`).
-- **Шрифты:** `src/app/fonts.ts` (сейчас Playfair Display + Manrope — заменить на фирменный).
-- **Логотип:** текстовый в `src/components/Header.tsx` и `Footer.tsx` — заменить на SVG/PNG в одном месте.
-- **Тексты (RU/EN):** `messages/ru.json` и `messages/en.json` — весь контент здесь.
-- **Прайс:** внутри `messages/*.json` → секция `price`.
-- **Ссылки/контакты/реквизиты:** `src/config/site.ts`.
-- **Галерея (фото/видео):** файлы в `public/gallery`, список — `src/config/gallery.ts`.
-
-## Деплой на Vercel
-1. Импортировать репозиторий на [vercel.com](https://vercel.com).
-2. В настройках проекта → Environment Variables добавить переменные из таблицы.
-3. Deploy. Домен `alisbeauty.ru`: Project → Settings → Domains → Add, затем указать DNS-записи у регистратора (Vercel подскажет).
+Статический сайт: **чистый HTML + CSS + vanilla JS** (ES-модули). Без сборки — открывается как есть.
+Анимации: **Lenis** (плавный скролл) + **GSAP ScrollTrigger** (параллакс/reveal/count-up) через CDN.
+Двуязычие **RU/EN** (переключатель в шапке, выбор запоминается).
 
 ## Структура
 ```
-src/
-  app/[locale]/       — страницы (главная, /politic), layout, метаданные
-  app/api/            — enquiry (заявки), instagram (лента)
-  components/         — Header, Footer, модалки, анимации
-  components/sections/— все секции длинной страницы
-  config/             — site.ts (ссылки), gallery.ts (медиа)
-  i18n/               — настройки next-intl
-messages/             — ru.json, en.json (весь текст)
+index.html          — разметка всех 11 секций
+css/style.css        — дизайн-система и стили
+js/i18n.js           — словарь RU/EN + переключатель языка
+js/main.js           — Lenis, GSAP, аккордеоны, до/после, форма, модалки
+api/lead.js          — serverless-функция (Vercel): заявка → Telegram
+assets/fonts/        — сюда положить файлы шрифта Thunder (см. ниже)
+assets/img/          — фото работ, og.jpg
 ```
+
+## Локальный запуск
+Нужен любой статический сервер (из-за ES-модулей нельзя открывать `file://`):
+```bash
+npx serve -l 3000 .
+```
+Открыть http://localhost:3000
+
+## Что подставить владельцу (плейсхолдеры)
+
+**В `js/main.js` → объект `CONFIG`:**
+- `YCLIENTS_ID` — ID виджета онлайн-записи YClients (пусто → показывается заглушка с WhatsApp)
+- `WHATSAPP` — номер для `wa.me`, только цифры (напр. `79180000000`)
+- `METRIKA_ID` — номер счётчика Яндекс.Метрики (+ вставить сам счётчик в `<head>`)
+- `CALLBACK_ENDPOINT` — эндпоинт функции заявки (по умолчанию `/api/lead`)
+
+**Переменные окружения (Vercel) для `api/lead.js`:**
+- `TELEGRAM_BOT_TOKEN` — токен бота от @BotFather
+- `TELEGRAM_CHAT_ID` — id чата, куда падают заявки
+> Токен бота хранится ТОЛЬКО на бэкенде, в клиентский JS не попадает.
+
+**В контенте (`index.html` + строки в `js/i18n.js`):**
+- Название салона, логотип, телефон, адрес, часы работы
+- Цены (везде `[X] ₽` / `[N]`)
+- Ссылки: WhatsApp, Telegram, Instagram (`[INSTAGRAM_URL]`, `[TELEGRAM_URL]`)
+- Ссылка «Оставить отзыв» (`[ССЫЛКА_НА_ОТЗЫВЫ]` — Яндекс/2ГИС/Google)
+- Юр. данные: `[ИП ___]`, `[ИНН ___]`
+- Координаты салона в `<iframe>` Яндекс.Карты (подвал)
+- Фото работ в `assets/img/` (сейчас градиенты-плейсхолдеры)
+- `assets/img/og.jpg` — картинка для соцсетей
+
+**Шрифт Thunder** (лицензионный): положить в `assets/fonts/`:
+- `Thunder-Bold.woff2`, `Thunder-Medium.woff2`
+Пока файлов нет — заголовки рендерятся шрифтом **Oswald** (визуально близкий, из Google Fonts).
+
+**Instagram-лента:** по умолчанию ручная сетка плиток. Для авто-ленты — подключить виджет
+[Behold](https://behold.so) в блок `#ig-feed` (ключ-плейсхолдер).
+
+## Деплой
+Статика + `/api`. На Vercel — залить репозиторий, задать env-переменные Telegram. `index.html` в корне.
