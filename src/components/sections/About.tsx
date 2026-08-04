@@ -29,7 +29,7 @@ export default function About() {
           {/* Левая колонка: текст + статистика */}
           <div className="order-2 lg:order-1">
             <Reveal>
-              <div className="max-w-xl space-y-6 text-[16px] leading-relaxed text-muted sm:text-[17px]">
+              <div className="max-w-xl space-y-6 text-[15px] leading-relaxed text-muted sm:text-[16px]">
                 <p>{t('p1')}</p>
                 <p>{t('p2')}</p>
               </div>

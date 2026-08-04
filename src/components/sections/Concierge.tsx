@@ -13,7 +13,7 @@ export default function Concierge() {
     <Section id="concierge" eyebrow={t('eyebrow')} title={t('title')}>
       <div className="grid gap-12 lg:grid-cols-2">
         <Reveal>
-          <div className="space-y-5 text-lg leading-relaxed text-muted">
+          <div className="space-y-5 text-[15px] leading-relaxed text-muted sm:text-[16px]">
             <p>{t('p1')}</p>
             <p>{t('p2')}</p>
             <button

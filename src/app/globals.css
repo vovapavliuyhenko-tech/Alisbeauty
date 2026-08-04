@@ -29,6 +29,7 @@ body {
   color: var(--text);
   font-family: var(--font-body), system-ui, sans-serif;
   overflow-x: hidden;
+  letter-spacing: -0.01em; /* плотный трекинг как на референсе (Inter -0.7px) */
 }
 
 /* Lenis плавный скролл */

@@ -24,7 +24,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-24 py-20 sm:py-28 ${alt ? 'bg-surface' : ''} ${className}`}
+      className={`scroll-mt-24 py-24 sm:py-32 ${alt ? 'bg-surface' : ''} ${className}`}
     >
       <div className="mx-auto w-[92%] max-w-content">
         {(eyebrow || title) && (
