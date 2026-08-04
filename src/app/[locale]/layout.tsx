@@ -61,8 +61,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${fontDisplay.variable} ${fontBody.variable}`}>
-      <body>
+    <html lang={locale} className={`${fontDisplay.variable} ${fontBody.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <Preloader />
           <SmoothScroll>
