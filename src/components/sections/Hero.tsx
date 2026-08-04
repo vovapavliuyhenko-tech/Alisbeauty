@@ -31,12 +31,13 @@ export default function Hero() {
   // Scroll-эффект: карточка плавно уезжает вниз, снизу поднимается затемнение —
   // карточка как будто уходит в темноту (глобальный scrollY — надёжно обновляется).
   const { scrollY } = useScroll();
-  const cardY = useTransform(scrollY, [0, 720], [0, 300]);
-  const darkOpacity = useTransform(scrollY, [0, 260, 680], [0, 0.12, 1]);
+  // Короткий «ход»: карточка едет вниз до полного исчезновения в темноте
+  const cardY = useTransform(scrollY, [0, 330], [0, 580]);
+  const darkOpacity = useTransform(scrollY, [0, 130, 330], [0, 0.15, 1]);
 
   return (
-    // Секция длиннее экрана — даёт «ход» скроллу, пока сцена закреплена
-    <section className="relative h-[190vh] w-full bg-bg">
+    // Секция чуть длиннее экрана — короткий «ход» скролла
+    <section className="relative h-[150vh] w-full bg-bg">
       <div className="sticky top-0 h-svh w-full overflow-hidden">
         {/* Два ч-б фото на фоне */}
         <MirrorMedia />
@@ -48,22 +49,22 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease }}
-            className="flex aspect-[337/443] max-h-[78svh] w-[88%] max-w-[338px] flex-col justify-between bg-white px-7 py-9 text-center text-[#17191a] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)]"
+            className="flex aspect-[337/443] max-h-[82svh] w-[90%] max-w-[380px] flex-col justify-between bg-white px-8 py-10 text-center text-[#17191a] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)]"
           >
             {/* Верхний тэглайн */}
-            <p className="mx-auto max-w-[17rem] text-[13px] leading-snug tracking-tight text-[#17191a]">
+            <p className="mx-auto max-w-[18rem] text-[14px] leading-snug tracking-tight text-[#17191a]">
               {t('cardTop')}
             </p>
 
-            {/* Крупное брендовое имя — чистый гротеск, мельче и чётче (как «resayme») */}
+            {/* Крупное брендовое имя — чистый гротеск, чёткий (как «resayme») */}
             <div className="flex flex-1 items-center justify-center">
-              <span className="text-[44px] font-semibold leading-none tracking-[-0.03em] text-[#17191a] sm:text-[48px]">
+              <span className="text-[52px] font-semibold leading-none tracking-[-0.03em] text-[#17191a] sm:text-[58px]">
                 a&apos;lis
               </span>
             </div>
 
             {/* Нижний подзаголовок */}
-            <p className="mx-auto max-w-[18rem] text-[13px] leading-snug tracking-tight text-[#4a4a4a]">
+            <p className="mx-auto max-w-[19rem] text-[14px] leading-snug tracking-tight text-[#4a4a4a]">
               {t('cardSub')}
             </p>
           </motion.div>
@@ -72,7 +73,7 @@ export default function Hero() {
         {/* Градиентное затемнение снизу — поднимается при скролле, поглощает карточку */}
         <motion.div
           style={{ opacity: darkOpacity }}
-          className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-transparent via-bg/55 to-bg"
+          className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-transparent via-bg to-bg"
         />
       </div>
     </section>
