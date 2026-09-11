@@ -20,11 +20,11 @@
   <!-- Шрифты: Inter + Oswald (fallback под Thunder) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/css/style.css" />
 </head>
-<body>
+<body class="home">
   <a class="skip-link" href="#hero" data-i18n="a11y.skip">К основному содержимому</a>
 
   <!-- ================= ШАПКА ================= -->
@@ -38,7 +38,7 @@
         <a href="#about" data-i18n="nav.about">О нас</a>
         <a href="#cases" data-i18n="nav.cases">Кейсы</a>
         <a href="#reviews" data-i18n="nav.reviews">Отзывы</a>
-        <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
+        <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
       </nav>
 
       <div class="header__actions">
@@ -65,29 +65,59 @@
       <a href="#about" data-i18n="nav.about">О нас</a>
       <a href="#cases" data-i18n="nav.cases">Кейсы</a>
       <a href="#reviews" data-i18n="nav.reviews">Отзывы</a>
-      <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
+      <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
     </nav>
     <button class="btn btn--solid" data-booking type="button"><span data-i18n="nav.book">Записаться</span></button>
   </div>
 
   <main>
     <!-- ================= 1. HERO ================= -->
-    <section class="hero section--dark" id="hero">
-      <div class="hero__blob" data-speed="-1" aria-hidden="true"></div>
-      <div class="container hero__inner">
-        <p class="eyebrow" data-i18n="hero.eyebrow">Салон красоты · Новороссийск</p>
-        <h1 class="hero__title" data-i18n="hero.title">Безупречно — от маникюра до дня свадьбы</h1>
-        <p class="hero__sub lead" data-i18n="hero.sub">Премиальный салон в Новороссийске. Результат, за который не стыдно.</p>
-        <div class="hero__actions">
-          <button class="btn btn--solid" data-booking type="button">
-            <span data-i18n="hero.ctaBook">Записаться онлайн</span><i class="arrow">→</i>
-          </button>
-          <a class="btn btn--ghost btn--ghost-light" href="#services">
-            <span data-i18n="hero.ctaServices">Смотреть услуги</span>
-          </a>
+    <section class="mhero" id="hero">
+      <img class="mhero__bg" src="/assets/img/hero-massage.jpg" alt="" aria-hidden="true" />
+      <div class="mhero__scrim" aria-hidden="true"></div>
+
+      <!-- Верхняя панель: адрес · бренд · навигация -->
+      <div class="mhero__top">
+        <p class="mhero__addr">Москва, ул. Архитектора<br />Власова, 71, корп. 2</p>
+
+        <div class="mhero__brand">
+          <span class="mhero__brand-title">Студия массажа</span>
+          <span class="mhero__brand-sub">Евгении Романовой</span>
         </div>
-        <p class="hero__trust" data-i18n="hero.trust">500+ клиентов · 5,0 на Яндексе · мастера от 5 лет</p>
+
+        <nav class="mhero__nav" aria-label="Основное меню">
+          <a href="#services">Услуги</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
       </div>
+
+      <!-- Нижний контент -->
+      <div class="mhero__content">
+        <p class="mhero__lead">
+          Запишитесь на первый сеанс и почувствуйте,<br />
+          как тело отпускает накопившееся напряжение.<br />
+          <strong>Скидка 10% на первое посещение.</strong>
+        </p>
+        <h1 class="mhero__title">
+          Студия массажа,<br />
+          где каждое прикосновение<br />
+          расслабляет тело и мысли
+        </h1>
+        <button class="mhero__cta" data-booking type="button">Записаться</button>
+      </div>
+
+      <!-- Карточка-отзыв -->
+      <figure class="mhero__quote">
+        <img class="mhero__quote-photo" src="/assets/img/specialist.jpg" alt="Евгения Романова" />
+        <div class="mhero__quote-body">
+          <blockquote>«Здесь создаётся атмосфера, в которой вы чувствуете спокойствие и доверие. Вслед за этим уходит эмоциональное напряжение, а тело максимально эффективно откликается на массаж».</blockquote>
+          <figcaption><strong>Евгения Романова,</strong> специалист по работе с телом</figcaption>
+        </div>
+      </figure>
+
+      <!-- Круглая кнопка онлайн-записи -->
+      <button class="mhero__round" data-booking type="button"><span>Онлайн-<br />запись</span></button>
     </section>
 
     <!-- ================= 2. УСЛУГИ ================= -->

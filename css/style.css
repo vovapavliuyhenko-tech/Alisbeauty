@@ -171,25 +171,120 @@ ul, ol { list-style: none; }
 .mobile-menu a { font-family: var(--font-head); text-transform: uppercase; font-size: 30px; color: #fff; }
 .mobile-menu a:hover { color: var(--wine); }
 
-/* ================= HERO ================= */
-.hero {
-  position: relative; min-height: 100svh; display: flex; align-items: center;
-  overflow: hidden; background: var(--ink);
+/* ================= HERO (студия массажа) ================= */
+/* На главной верхнюю панель несёт сам герой — глобальную шапку скрываем. */
+body.home .header,
+body.home .mobile-menu { display: none; }
+
+.mhero {
+  position: relative; min-height: 100svh; overflow: hidden;
+  background: #b9b3a9; /* фолбэк, пока нет фото */
+  color: #fff;
+  --pad: clamp(20px, 3.2vw, 54px);
 }
-.hero__blob {
-  position: absolute; inset: -30% -10% auto; height: 120%;
-  background: radial-gradient(60% 60% at 50% 40%, #26292B 0%, #17191A 55%, #121212 100%);
-  filter: saturate(.9); z-index: 0;
+.mhero__bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center; z-index: 0;
 }
-.hero__inner { position: relative; z-index: 1; padding-top: 80px; }
-.hero__title {
-  font-family: var(--font-head); text-transform: uppercase; font-weight: 700;
-  line-height: .95; letter-spacing: .005em; color: #fff;
-  font-size: clamp(48px, 9vw, 120px); max-width: 15ch; margin-top: 18px;
+/* Затемнение для читаемости: сверху и в левом-нижнем углу */
+.mhero__scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(20,18,16,.34) 0%, rgba(20,18,16,0) 22%),
+    linear-gradient(200deg, rgba(20,18,16,0) 42%, rgba(20,18,16,.42) 100%);
 }
-.hero__sub { margin-top: 22px; max-width: 46ch; color: rgba(255,255,255,.75); }
-.hero__actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
-.hero__trust { margin-top: 28px; font-size: 13px; color: var(--gray); }
+.mhero > *:not(.mhero__bg):not(.mhero__scrim) { position: absolute; z-index: 2; }
+
+/* ---- Верхняя панель ---- */
+.mhero__top {
+  top: 0; left: 0; right: 0;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: start;
+  gap: 20px; padding: clamp(18px, 2.4vw, 34px) var(--pad) 0;
+}
+.mhero__addr {
+  font-size: 13px; line-height: 1.45; color: rgba(255,255,255,.92);
+  letter-spacing: 0;
+}
+.mhero__brand { text-align: center; justify-self: center; line-height: 1.15; }
+.mhero__brand-title {
+  display: block; font-size: clamp(14px, 1.15vw, 17px); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .32em; padding-left: .32em;
+}
+.mhero__brand-sub {
+  display: block; margin-top: 3px; font-family: var(--font-body);
+  font-size: 12px; color: rgba(255,255,255,.85); letter-spacing: .02em;
+}
+.mhero__nav { justify-self: end; display: flex; gap: 12px; }
+.mhero__nav a {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 26px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.55);
+  font-size: 14px; color: #fff; letter-spacing: .01em;
+  transition: background var(--t-color), border-color var(--t-color), color var(--t-color);
+}
+.mhero__nav a:hover { background: #fff; border-color: #fff; color: var(--ink); }
+
+/* ---- Нижний контент ---- */
+.mhero__content {
+  left: 0; bottom: clamp(28px, 4vw, 54px);
+  padding-left: var(--pad); padding-right: 24px;
+  max-width: min(900px, 66vw);
+}
+.mhero__lead {
+  font-size: clamp(14px, 1.05vw, 16px); line-height: 1.5;
+  color: rgba(255,255,255,.92); margin-bottom: clamp(22px, 3vw, 40px);
+}
+.mhero__lead strong { font-weight: 600; }
+.mhero__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600; text-transform: uppercase;
+  font-size: clamp(28px, 3.75vw, 54px); line-height: 1.08;
+  letter-spacing: .005em; color: #fff; white-space: nowrap;
+  text-shadow: 0 1px 30px rgba(0,0,0,.18);
+}
+.mhero__cta {
+  margin-top: clamp(26px, 3.4vw, 46px);
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: min(560px, 80vw); padding: 22px 40px;
+  border-radius: 999px; background: #efe9e1; color: var(--ink);
+  font-size: 15px; font-weight: 500; letter-spacing: .01em;
+  transition: background var(--t-color), color var(--t-color), transform var(--t-move);
+}
+.mhero__cta:hover { background: #fff; transform: translateY(-2px); }
+
+/* ---- Карточка-отзыв ---- */
+.mhero__quote {
+  right: var(--pad); bottom: clamp(28px, 4vw, 54px);
+  width: min(560px, 44vw); display: flex; gap: 18px; align-items: stretch;
+  padding: 18px; border-radius: 20px;
+  background: rgba(238,233,225,.72); backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.4); color: var(--ink);
+}
+.mhero__quote-photo {
+  width: 96px; flex-shrink: 0; align-self: stretch; object-fit: cover;
+  border-radius: 14px; background: #cfc8bd;
+}
+.mhero__quote-body { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.mhero__quote blockquote {
+  font-size: 13px; line-height: 1.5; color: #35322e;
+}
+.mhero__quote figcaption { font-size: 13px; line-height: 1.4; color: #4a4642; }
+.mhero__quote figcaption strong { font-weight: 600; }
+
+/* ---- Круглая кнопка онлайн-записи ---- */
+.mhero__round {
+  right: calc(var(--pad) - 6px); bottom: clamp(20px, 3vw, 40px);
+  width: 118px; height: 118px; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: rgba(255,255,255,.16); backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.55);
+  color: #fff; font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px; line-height: 1.15;
+  transition: background var(--t-color), color var(--t-color);
+}
+.mhero__round:hover { background: #fff; color: var(--ink); }
 
 /* ================= КАРТОЧКИ УСЛУГ ================= */
 .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -305,6 +400,35 @@ ul, ol { list-style: none; }
 .form__status.is-err { color: #e2889a; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
+/* ================= КОНТАКТЫ (страница) ================= */
+/* Первая секция подпирается фиксированной шапкой — даём воздух сверху */
+.subhero { padding-top: clamp(128px, 16vw, 220px); }
+.subhero .section__title { max-width: 16ch; }
+.subhero .hero__actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* Карточки контактов — на базе .card, но key/value типографика */
+.contacts-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.contacts-cards .card--wide { grid-column: 1 / -1; }
+.contact-card__k {
+  font-family: var(--font-body); font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .22em; color: var(--gray);
+}
+.contact-card__v { font-size: clamp(20px, 2.2vw, 26px); font-weight: 600; letter-spacing: -.01em; line-height: 1.15; }
+.contact-card__note { color: #6a6d6f; font-size: 14px; }
+.contact-card__links { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Карта на светлой секции — тонкая рамка, без тёмного инвертирования */
+.map-card { border: 1px solid var(--line-light); border-radius: var(--radius); overflow: hidden; }
+.map-card iframe { width: 100%; height: clamp(320px, 42vw, 520px); border: 0; filter: grayscale(.25) contrast(1.02); }
+
+@media (max-width: 960px) {
+  .contacts-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .contacts-cards { grid-template-columns: 1fr; }
+  .subhero .hero__actions .btn { width: 100%; justify-content: center; }
+}
+
 /* ================= ПОДВАЛ ================= */
 .footer { background: var(--black); color: rgba(255,255,255,.75); padding-block: clamp(56px, 7vw, 96px) 40px; }
 .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap: 40px; }
@@ -374,6 +498,38 @@ ul, ol { list-style: none; }
   .footer__grid { grid-template-columns: 1fr; }
   .hero__actions .btn { width: 100%; justify-content: center; }
   .lang { display: none; }
+}
+
+/* ---- Адаптив героя студии массажа ---- */
+@media (max-width: 1100px) {
+  .mhero__quote { width: min(460px, 52vw); }
+  .mhero__quote-photo { width: 78px; }
+}
+@media (max-width: 900px) {
+  .mhero {
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding-bottom: 28px;
+  }
+  .mhero > *:not(.mhero__bg):not(.mhero__scrim) { position: static; }
+  .mhero__scrim {
+    background: linear-gradient(to bottom, rgba(20,18,16,.45) 0%, rgba(20,18,16,.12) 32%, rgba(20,18,16,.6) 100%);
+  }
+  .mhero__top {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    padding: 18px var(--pad) 0; text-align: center;
+  }
+  .mhero__brand { order: 1; }
+  .mhero__nav { order: 2; flex-wrap: wrap; justify-content: center; }
+  .mhero__addr { order: 3; text-align: center; }
+  .mhero__content { margin-top: auto; max-width: none; padding-top: 34px; padding-right: var(--pad); }
+  .mhero__title { white-space: normal; font-size: clamp(26px, 7vw, 40px); }
+  .mhero__cta { min-width: 0; width: 100%; }
+  .mhero__quote { width: auto; margin: 22px var(--pad) 0; }
+  .mhero__round { margin: 18px auto 0; }
+}
+@media (max-width: 520px) {
+  .mhero__quote { flex-direction: column; }
+  .mhero__quote-photo { width: 100%; height: 150px; }
 }
 
 /* ---- prefers-reduced-motion: выключаем всё движение ---- */
